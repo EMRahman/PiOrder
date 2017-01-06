@@ -73,6 +73,7 @@ A: Approx £545 for the hardware, then £45/year for Web Hosting and £30/month 
 
 
 Breakdown:
+
 1 Large Tablet £130	
 2 Small Tablets £100	
 Wireless router £30	
@@ -82,7 +83,7 @@ Printer Cam £20
 Socket Ethernet 	£50	
 Ethernet cables £5	
 Web Hosting £45/Per Year
-Monthly Internet £30/Month (includes telephone service)
+Monthly Internet & Telephone £30/Month
 
 Q: How does this compare to EPOS firm such as EPOSNow?
 A: A) EPOSNow offer £1,119 for a standalone system alone; with no native online ordering capability. They do have partnered sites.
