@@ -12,8 +12,7 @@ Raspberry Pi & Pipsta based EPOS, Restaurant Ticketing &amp; Online Ordering.
 
 ## Live Online Demo
 
-Live in Kingswood, Surrey? [Order online!](https://khybertandoori.com/order/login)
-
+Live near Kingswood, Surrey? [Order online!](https://khybertandoori.com/order/login)
 NB: Not accessible outside the UK
 
 
