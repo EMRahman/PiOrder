@@ -49,7 +49,7 @@ NB: Not accessible outside the UK
    * Receipts are emailed to the customers.
 
 ##Technical Overview
-   * A Raspberry Pi webserver is used to implement an EPOS (JavaScript/Jquery/PHP).
+   * A Raspberry Pi webserver is used to implement the POS (JavaScript/JQuery/PHP).
    * The Pipsta printers are used to print the customer receipts or kitchen tickets (Python, Bash Scripts, SCP).
    * Orders arriving from a website are sent to the bar and kitchen for printing (SCP).
    * The website creation is agnostic, but we've used Symfony2 & PHP. Bash, Awk and Cron used for handling of the orders and current waiting time.
