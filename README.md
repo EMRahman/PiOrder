@@ -60,6 +60,6 @@ NB: Not accessible outside the UK
 2. 2 x [Pipsta](http://www.pipsta.co.uk)
 3. 1 x Web Hosting ([we use 4uhosting.co.uk](https://www.4uhosting.co.uk))
 4. 1 x Wifi router & internet connection
-5. 1 x Pair of Socket ethernet
+5. 1 x Pair of powerline ethernet adaptors
 6. 1 (or more) Tablets (for web browsing)
 7. Optional: Raspberry Pi Cameras
