@@ -10,7 +10,7 @@ Raspberry Pi & Pipsta based EPOS, Restaurant Ticketing &amp; Online Ordering.
    * We play a sound for the chefs to hear the order arrival.
 3. View how busy the kitchen is from using other Raspberry Pi cameras. Important for knowing the currentwaiting time for orders.
 4. Allow customers to order online
-   * Waiting can set by waiters via the tablets. Hangryness should not be underestimated (customers can get very angry if they are hungry and their order is late).
+   * Waiting time can set by waiters via the tablets and/or scheduled. Hangryness should not be underestimated (customers can get very angry if they are hungry and their order is late).
    * Orders arrive straight to the bar and kitchen printers. 
    * Frees up waiters manually taking a telephone order. 
    * Receipts are emailed to the customers.
