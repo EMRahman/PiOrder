@@ -80,16 +80,16 @@ Wireless router £30
 Printer Cam £20	
 2 Raspberry Pi's £70	
 2 Printers £140	
-Socket Ethernet 	£50	
+Socket Ethernet	£50	
 Ethernet cables £5	
 Web Hosting £45/Per Year
 Monthly Internet & Telephone £30/Month
 
 Q: How does this compare to EPOS firm such as EPOSNow?
-A: A) EPOSNow offer £1,119 for a standalone system alone; with no native online ordering capability. They do have partnered sites.
+A: A) At the time of writing, EPOSNow offer £1,119 for a standalone system alone (at the time of writing); with no native online ordering capability. They do have partnered firms that do offer this, however.
 
 Q: How does this compare to JustEat?
-A: A) JustEat is just for online ordering (as far as I'm aware) and B) It's expensive! It's (at the time of writing £838.8) to just sign-up and the average monthly cost is ~£500.
+A: A) JustEat is just for online ordering (as far as I'm aware) and B) At the time of writing £838.8 to just sign-up and the average monthly cost is ~£500.
 * [Article 1](http://www.managementtoday.co.uk/dont-eat-two-thirds-takeaways-say-just-eats-fees-unfair/article/1299038)
 * [Article 2](https://www.preoday.com/blog/just-eat-really-best-option-takeaway/)
 * [JustEat Official Costs](https://restaurants.just-eat.co.uk/benefits.html)
