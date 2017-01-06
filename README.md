@@ -1,8 +1,8 @@
 # PiOrder
 Raspberry Pi & Pipsta based EPOS, Restaurant Ticketing &amp; Online Ordering.
 
-## Pictures & Video
-(To be completed)
+## Demo
+(Pics & Videos to be completed)
 
 ##Features
 1. Handling of all orders using a touch based EPOS by waiters. 
