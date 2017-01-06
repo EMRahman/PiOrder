@@ -32,32 +32,28 @@ NB: Not accessible outside the UK
 
 ##Features
 1. Handling of all orders using a touch based EPOS by waiters. 
-   * No manual writing of order
+   * No manual writing of orders
    * No illegibility problems
-   * No manual tallying
+   * No manual tallying with a calculator
 2. Printing of kitchen tickets at the bar and kitchen: 
-   * No carbon copy requiring walking! 
+   * No carbon paper copy requiring walking to the kitchen! 
    * We use a camera to physically see the kitchen printouts
    * We play a sound for the chefs to hear the order arrival.
-3. View how busy the kitchen is from using other Raspberry Pi cameras. Important for knowing the currentwaiting time for orders.
+3. View how busy the kitchen is from using other Raspberry Pi cameras. Important for knowing the current waiting time for orders.
 4. Allow customers to order online:
-   * Waiting time can set by waiters via the tablets and/or scheduled. Hangryness should not be underestimated (customers can get very angry if they are hungry and their order is late).
+   * Frees up waiters manually taking a telephone order. 
+   * Waiting time can set by waiters via the tablets and/or scheduled; so the customer is informed how long their order will take.
    * Customers order using a webpage. We use [JQuery Mobile](https://jquerymobile.com).
    * Customers can easily reload previous orders and take their time in ordering.
    * Orders arrive straight to the bar and kitchen printers. Optional order review page and safety valves placed for security. 
-   * Frees up waiters manually taking a telephone order. 
    * Receipts are emailed to the customers.
 
 ##Technical Overview
-A Raspberry Pi webserver is used to implement an EPOS (JavaScript/Jquery/PHP).
-
-The Pipsta printers are used to print the customer receipts or kitchen tickets (Python, Bash Scripts, SCP).
-
-Orders arriving from a website are sent to the bar and kitchen for printing (SCP).
-
-The website creation is agnostic, but we've used Symfony2 & PHP. Bash, Awk and Cron used for handling of the orders and current waiting time.
-
-No central database is used - using files is sufficient for this system.
+   * A Raspberry Pi webserver is used to implement an EPOS (JavaScript/Jquery/PHP).
+   * The Pipsta printers are used to print the customer receipts or kitchen tickets (Python, Bash Scripts, SCP).
+   * Orders arriving from a website are sent to the bar and kitchen for printing (SCP).
+   * The website creation is agnostic, but we've used Symfony2 & PHP. Bash, Awk and Cron used for handling of the orders and current waiting time.
+   * No central database is used - using files is sufficient for this system.
 
 ### Hardware
 1. 2 x [RP Model 2B](https://www.raspberrypi.org/products/raspberry-pi-2-model-b)
