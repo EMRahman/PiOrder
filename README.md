@@ -12,10 +12,9 @@ No central database is used - using files is sufficient for this system.
 
 ### Hardware
 [RP Model 2B](https://www.raspberrypi.org/products/raspberry-pi-2-model-b)
-
 [Pipsta](http://www.pipsta.co.uk)
-
-Wifi router.
+Wifi router
+Socket ethernet
 
 ### Topology
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Topology.png)
