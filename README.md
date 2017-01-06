@@ -15,7 +15,6 @@ Mobile ordering:
 
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/IMG_1977.PNG)
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/IMG_1974.PNG)
-![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/IMG_1975.PNG)
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/IMG_1976.PNG)
 
 ## Video 
