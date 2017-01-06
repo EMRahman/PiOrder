@@ -1,5 +1,5 @@
 # PiOrder
-Raspberry Pi & Pipsta based EPOS, Restaurant Ticketing &amp; Online Ordering.
+Raspberry Pi & Pipsta based restaurant [Point of Sale](https://en.wikipedia.org/wiki/Point_of_sale#Hospitality_industry), Ticketing &amp; Online Ordering.
 
 ## Images
 
