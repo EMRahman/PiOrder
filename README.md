@@ -54,24 +54,29 @@ NB: Not accessible outside the UK
 
 ## FAQ's
 Q: Why print onto paper / why not go fully electronic?
-A: For customers, a paper receipt is still common. For chefs in the kitchen, paper has value in a kitchen environment. [An interesting discussion here](http://www.cheftalk.com/t/69312/for-those-in-professional-kitchens-ticket-taking-expediting).
+A: For customers, a paper receipt is still desired. For chefs, paper has robustness in a kitchen environment. [An interesting discussion here](http://www.cheftalk.com/t/69312/for-those-in-professional-kitchens-ticket-taking-expediting).
 
-Q: How much does this cost roughly?
-A: Breakdown below:
+Q: How much does this cost?
+A: Estimated breakdown below:
 
 | Item            | Cost           | 
 | --------------- | --------------:|
-|1 Large Tablet   |            £130|
+|2 Pipista Printers|           £160|	
+|1 Large Tablet   |            £150|
 |2 Small Tablets  |            £100|
-|1 Wireless router|             £30|
 |1 Printer Cam    |             £20|
 |2 Raspberry Pi's |             £70|	
-|2 Pipista Printers|           £140|	
-|Socket Ethernet  |	            £50|	
+|Powerline Ethernet|	          £50|	
+|1 Wireless router|             £30|
+|1 Speaker        |             £30|
 |Ethernet cables  |              £5|	
 |Thermal paper    |        £50/year|
 |Web Hosting      |        £65/year|
 |Internet & Telephone|    £30/month|
+
+Notes:
+* A 3G Mifi costing £30 for the device and £30/year for 12GB is a possibility.
+* While a static IP is useful, it isn't strictly necessary.
 
 Q: How reliable are the Pipsta printers, Raspberry Pi's and tablets? 
 A: We've been running all the above for a full year with no hardware based problems.
