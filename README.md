@@ -31,9 +31,9 @@ NB: Not accessible outside the UK
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/Topology.png)
 
 ##Features
-1. Orders using a touch based POS by waiters. 
-2. Print bar receipts and order tickets to the kitchen. 
-3. Allow customers to order online.
+1. Tablet/touch based POS for waiters.
+2. Print bar receipts and tickets to the kitchen. 
+3. Online ordering for customers.
 4. View the bar or kitchen using RP cameras.
 
 ##Technical Overview
