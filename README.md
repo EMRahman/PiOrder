@@ -13,9 +13,10 @@ At the restaurant:
 
 Mobile ordering:
 
-![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/IMG_1977.PNG)
-![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/IMG_1974.PNG)
-![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/IMG_1976.PNG)
+![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/IMG_1979.PNG)
+![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/IMG_1980.PNG)
+![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/IMG_1981.PNG)
+![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/IMG_1982.PNG)
 
 ## Video 
 (Video to be completed)
