@@ -31,22 +31,10 @@ NB: Not accessible outside the UK
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/Topology.png)
 
 ##Features
-1. Handling of all orders using a touch based EPOS by waiters. 
-   * No manual writing of orders
-   * No illegibility problems
-   * No manual tallying with a calculator
-2. Printing of kitchen tickets at the bar and kitchen: 
-   * No carbon paper copy requiring walking to the kitchen! 
-   * We use a camera to physically see the kitchen printouts
-   * We play a sound for the chefs to hear the order arrival.
-3. View how busy the kitchen is from using other Raspberry Pi cameras. Important for knowing the current waiting time for orders.
-4. Allow customers to order online:
-   * Frees up waiters manually taking a telephone order. 
-   * Waiting time can set by waiters via the tablets and/or scheduled; so the customer is informed how long their order will take.
-   * Customers order using a webpage. We use [JQuery Mobile](https://jquerymobile.com).
-   * Customers can easily reload previous orders and take their time in ordering.
-   * Orders arrive straight to the bar and kitchen printers. Optional order review page and safety valves placed for security. 
-   * Receipts are emailed to the customers.
+1. Orders using a touch based POS by waiters. 
+2. Print bar receipts and order tickets to the kitchen. 
+3. Allow customers to order online.
+4. View the bar or kitchen using RP cameras.
 
 ##Technical Overview
    * A Raspberry Pi webserver is used to implement the POS (JavaScript/JQuery/PHP).
@@ -71,7 +59,6 @@ A: For customers, a paper receipt is still common. For chefs in the kitchen, pap
 Q: How much does this cost roughly?
 A: Approx £545 for the hardware, then £65/year for Web Hosting (host, domain and SSL certificate), £50/year for thermal papers and £30/month for Telehphone & Internet. The internet can of course be shared with customers as a service.
 
-
 | Item            | Cost           | 
 | --------------- | --------------:|
 |1 Large Tablet   |            £130|
@@ -85,15 +72,6 @@ A: Approx £545 for the hardware, then £65/year for Web Hosting (host, domain a
 |Thermal paper    |        £50/year|
 |Web Hosting      |        £65/year|
 |Internet & Telephone|    £30/month|
-
-Q: How does this compare to EPOS firm such as EPOSNow?
-A: A) At the time of writing, EPOSNow offer £1,119 for a standalone system alone EPOS (at the time of writing); with no native online ordering capability. They do have partnered firms that do offer this, however.
-
-Q: How does this compare to JustEat?
-A: A) JustEat is just for online ordering (as far as I'm aware) and B) At the time of writing £838.8 to just sign-up and the average monthly cost is ~£500.
-* [Article 1](http://www.managementtoday.co.uk/dont-eat-two-thirds-takeaways-say-just-eats-fees-unfair/article/1299038)
-* [Article 2](https://www.preoday.com/blog/just-eat-really-best-option-takeaway/)
-* [JustEat Official Costs](https://restaurants.just-eat.co.uk/benefits.html)
 
 Q: How reliable are the Pipsta printers, Raspberry Pi's and tablets? 
 A: We've been running all the above for a full year with no hardware based problems.
