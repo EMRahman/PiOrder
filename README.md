@@ -3,17 +3,17 @@ Raspberry Pi & Pipsta based EPOS, Restaurant Ticketing &amp; Online Ordering.
 
 ##Features
 1. Handling of all orders using a touch based EPOS by waiters. 
-..1. No manual writing, illegibility or tallying!
+⋅⋅1. No manual writing, illegibility or tallying!
 2. Printing of kitchen tickets at the bar or kitchen within, multiple times for different chefs. 
-..1. No carbon copy requiring walking! 
-..2. We also a camera to physically see the kitchen printout
-..3. We play a sound for the chefs to hear the order arrival.
+⋅⋅1. No carbon copy requiring walking! 
+⋅⋅2. We also a camera to physically see the kitchen printout
+⋅⋅3. We play a sound for the chefs to hear the order arrival.
 3. View how busy the kitchen is from using other Raspberry Pi cameras. Important for knowing the currentwaiting time for orders.
 4. Allow customers to order online
-..1. Waiting can set by waiters via the tablets. Hangryness should not be underestimated (customers can get very angry if they are hungry and their order is late).
-..2. Orders arrive straight to the bar and kitchen printers. 
-..3. Frees up waiters manually taking a telephone order. 
-..4. Receipts are emailed to the customers.
+⋅⋅1. Waiting can set by waiters via the tablets. Hangryness should not be underestimated (customers can get very angry if they are hungry and their order is late).
+⋅⋅2. Orders arrive straight to the bar and kitchen printers. 
+⋅⋅3. Frees up waiters manually taking a telephone order. 
+⋅⋅4. Receipts are emailed to the customers.
 
 ##Technical Overview
 A Raspberry Pi webserver is used to implement an EPOS (JavaScript/Jquery/PHP).
