@@ -66,12 +66,11 @@ NB: Not accessible outside the UK
 
 #FAQ's
 Q: Why print onto paper / why not go fully electronic?
-
 A: For customers, a paper receipt is still common. For chefs in the kitchen, paper has value in a kitchen environment. [An interesting discussion here](http://www.cheftalk.com/t/69312/for-those-in-professional-kitchens-ticket-taking-expediting).
 
 Q: How much does this cost roughly?
-
 A: Approx £545 for the hardware, then £45/year for Web Hosting and £30/month for Telehphone & Internet. The internet can of course be shared with customers as a service.
+
 
 Breakdown:
 1 Large Tablet £130	
@@ -85,13 +84,11 @@ Ethernet cables £5
 Web Hosting £45/Per Year
 Monthly Internet £30/Month (includes telephone service)
 
-Q: Why not just use EposNow?
+Q: How does this compare to EPOS firm such as EPOSNow?
+A: A) EPOSNow offer £1,119 for a standalone system alone; with no native online ordering capability. They do have partnered sites.
 
-A: A) EposNow offer £1,119 for a standalone system alone; with no online ordering capability.
-
-Q: Why not just use JustEat?
-
-A: A) It's just for online ordering and B) It's expensive! It's (at the time of writing £838.8) to just sign-up and the average monthly cost is ~£500. The above setup cost is 
+Q: How does this compare to JustEat?
+A: A) JustEat is just for online ordering (as far as I'm aware) and B) It's expensive! It's (at the time of writing £838.8) to just sign-up and the average monthly cost is ~£500.
 * [Article 1](http://www.managementtoday.co.uk/dont-eat-two-thirds-takeaways-say-just-eats-fees-unfair/article/1299038)
 * [Article 2](https://www.preoday.com/blog/just-eat-really-best-option-takeaway/)
 * [JustEat Official Costs](https://restaurants.just-eat.co.uk/benefits.html)
