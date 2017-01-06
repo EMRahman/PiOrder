@@ -72,18 +72,18 @@ Q: How much does this cost roughly?
 A: Approx £545 for the hardware, then £45/year for Web Hosting and £30/month for Telehphone & Internet. The internet can of course be shared with customers as a service.
 
 
-Breakdown:
-
-1 Large Tablet £130	
-2 Small Tablets £100	
-Wireless router £30	
-Printer Cam £20	
-2 Raspberry Pi's £70	
-2 Printers £140	
-Socket Ethernet	£50	
-Ethernet cables £5	
-Web Hosting £45/Per Year
-Monthly Internet & Telephone £30/Month
+| Item            | Cost          | 
+| --------------- | -------------:|
+|1 Large Tablet   |           £130|
+|2 Small Tablets  |           £100|
+|1 Wireless router|            £30|
+|1 Printer Cam    |            £20|
+|2 Raspberry Pi's |            £70|	
+|2 Printers       |           £140|	
+|Socket Ethernet  |	           £50|	
+|Ethernet cables  |             £5|	
+|Web Hosting      |       £45/year|
+|Internet & Telephone|   £30/month|
 
 Q: How does this compare to EPOS firm such as EPOSNow?
 A: A) At the time of writing, EPOSNow offer £1,119 for a standalone system alone EPOS (at the time of writing); with no native online ordering capability. They do have partnered firms that do offer this, however.
