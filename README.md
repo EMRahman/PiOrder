@@ -4,12 +4,15 @@ Raspberry Pi & Pipsta based EPOS, Restaurant Ticketing &amp; Online Ordering.
 ## Demo
 (Pics & Videos to be completed)
 
+### Topology
+![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Topology.png)
+
 ##Features
 1. Handling of all orders using a touch based EPOS by waiters. 
    * No manual writing, illegibility or tallying!
 2. Printing of kitchen tickets at the bar or kitchen within, multiple times for different chefs. 
    * No carbon copy requiring walking! 
-   * We also a camera to physically see the kitchen printout
+   * We use a camera to physically see the kitchen printouts
    * We play a sound for the chefs to hear the order arrival.
 3. View how busy the kitchen is from using other Raspberry Pi cameras. Important for knowing the currentwaiting time for orders.
 4. Allow customers to order online
@@ -38,6 +41,3 @@ No central database is used - using files is sufficient for this system.
 4. 1 x Wifi router & internet connection
 5. 1 x Pair of Socket ethernet
 6. 1 (or more) Tablets (for web browser)
-
-### Topology
-![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Topology.png)
