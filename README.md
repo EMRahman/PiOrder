@@ -32,12 +32,12 @@ The website creation is agnostic, but we've used Symfony2 & PHP. Bash, Awk and C
 No central database is used - using files is sufficient for this system.
 
 ### Hardware
-1. [RP Model 2B](https://www.raspberrypi.org/products/raspberry-pi-2-model-b)
-2. [Pipsta](http://www.pipsta.co.uk)
-3. Web Hosting ([we use 4uhosting.co.uk](https://www.4uhosting.co.uk))
-4. Wifi router & internet connection
-5. Socket ethernet
-6. Tablets (or any web browser)
+1. 2 x [RP Model 2B](https://www.raspberrypi.org/products/raspberry-pi-2-model-b)
+2. 2 x [Pipsta](http://www.pipsta.co.uk)
+3. 1 x Web Hosting ([we use 4uhosting.co.uk](https://www.4uhosting.co.uk))
+4. 1 x Wifi router & internet connection
+5. 1 x Pair of Socket ethernet
+6. 1 (or more) Tablets (for web browser). We use 3.
 
 ### Topology
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Topology.png)
