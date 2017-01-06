@@ -7,8 +7,6 @@ Raspberry Pi & Pipsta based restaurant [Point of Sale](https://en.wikipedia.org/
 
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/image2.JPG)
 
-![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/image3.JPG)
-
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/image4.JPG)
 
 ### Mobile Ordering
