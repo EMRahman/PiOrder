@@ -1,7 +1,7 @@
 # PiOrder
 Raspberry Pi & Pipsta based EPOS, Restaurant Ticketing &amp; Online Ordering.
 
-##Overview & Technologies Applied
+##Overview
 A Raspberry Pi webserver is used to implement an EPOS (JavaScript/Jquery/PHP).
 
 The Pipsta printers are used to print the customer receipts or kitchen tickets (Python, Bash Scripts, SCP).
