@@ -54,4 +54,5 @@ No central database is used - using files is sufficient for this system.
 3. 1 x Web Hosting ([we use 4uhosting.co.uk](https://www.4uhosting.co.uk))
 4. 1 x Wifi router & internet connection
 5. 1 x Pair of Socket ethernet
-6. 1 (or more) Tablets (for web browser)
+6. 1 (or more) Tablets (for web browsing)
+7. Optional: Raspberry Pi Cameras
