@@ -57,7 +57,7 @@ Q: Why print onto paper / why not go fully electronic?
 A: For customers, a paper receipt is still common. For chefs in the kitchen, paper has value in a kitchen environment. [An interesting discussion here](http://www.cheftalk.com/t/69312/for-those-in-professional-kitchens-ticket-taking-expediting).
 
 Q: How much does this cost roughly?
-A: Approx £545 for the hardware, then £65/year for Web Hosting (host, domain and SSL certificate), £50/year for thermal papers and £30/month for Telehphone & Internet. The internet can of course be shared with customers as a service.
+A: Breakdown below:
 
 | Item            | Cost           | 
 | --------------- | --------------:|
