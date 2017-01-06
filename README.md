@@ -86,7 +86,7 @@ Web Hosting £45/Per Year
 Monthly Internet & Telephone £30/Month
 
 Q: How does this compare to EPOS firm such as EPOSNow?
-A: A) At the time of writing, EPOSNow offer £1,119 for a standalone system alone (at the time of writing); with no native online ordering capability. They do have partnered firms that do offer this, however.
+A: A) At the time of writing, EPOSNow offer £1,119 for a standalone system alone EPOS (at the time of writing); with no native online ordering capability. They do have partnered firms that do offer this, however.
 
 Q: How does this compare to JustEat?
 A: A) JustEat is just for online ordering (as far as I'm aware) and B) At the time of writing £838.8 to just sign-up and the average monthly cost is ~£500.
