@@ -2,7 +2,12 @@
 Raspberry Pi & Pipsta based EPOS, Restaurant Ticketing &amp; Online Ordering.
 
 ## Demo
-(Pics & Videos to be completed)
+
+![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/image2.JPG)
+![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/image3.JPG)
+![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/image4.JPG)
+
+(Videos to be completed)
 
 ### Topology
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Topology.png)
