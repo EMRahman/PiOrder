@@ -63,3 +63,8 @@ NB: Not accessible outside the UK
 5. 1 x Pair of powerline ethernet adaptors
 6. 1 (or more) Tablets (for web browsing)
 7. Optional: Raspberry Pi Cameras
+
+#FAQ's
+Q: Why print onto paper / why not go fully electronic?
+
+A: For customers, a paper receipt is still common. For chefs in the kitchen, paper has value in a kitchen environment. [An interesting discussion here](http://www.cheftalk.com/t/69312/for-those-in-professional-kitchens-ticket-taking-expediting).
