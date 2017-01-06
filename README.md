@@ -69,21 +69,22 @@ Q: Why print onto paper / why not go fully electronic?
 A: For customers, a paper receipt is still common. For chefs in the kitchen, paper has value in a kitchen environment. [An interesting discussion here](http://www.cheftalk.com/t/69312/for-those-in-professional-kitchens-ticket-taking-expediting).
 
 Q: How much does this cost roughly?
-A: Approx £545 for the hardware, then £45/year for Web Hosting and £30/month for Telehphone & Internet. The internet can of course be shared with customers as a service.
+A: Approx £545 for the hardware, then £45/year for Web Hosting, £50/year for thermal papers and £30/month for Telehphone & Internet. The internet can of course be shared with customers as a service.
 
 
-| Item            | Cost          | 
-| --------------- | -------------:|
-|1 Large Tablet   |           £130|
-|2 Small Tablets  |           £100|
-|1 Wireless router|            £30|
-|1 Printer Cam    |            £20|
-|2 Raspberry Pi's |            £70|	
-|2 Printers       |           £140|	
-|Socket Ethernet  |	           £50|	
-|Ethernet cables  |             £5|	
-|Web Hosting      |       £45/year|
-|Internet & Telephone|   £30/month|
+| Item            | Cost           | 
+| --------------- | --------------:|
+|1 Large Tablet   |            £130|
+|2 Small Tablets  |            £100|
+|1 Wireless router|             £30|
+|1 Printer Cam    |             £20|
+|2 Raspberry Pi's |             £70|	
+|2 Pipista Printers|           £140|	
+|Socket Ethernet  |	            £50|	
+|Ethernet cables  |              £5|	
+|Thermal paper    |        £50/year|
+|Web Hosting      |        £45/year|
+|Internet & Telephone|    £30/month|
 
 Q: How does this compare to EPOS firm such as EPOSNow?
 A: A) At the time of writing, EPOSNow offer £1,119 for a standalone system alone EPOS (at the time of writing); with no native online ordering capability. They do have partnered firms that do offer this, however.
