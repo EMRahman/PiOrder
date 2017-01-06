@@ -21,9 +21,10 @@ Raspberry Pi & Pipsta based restaurant [Point of Sale](https://en.wikipedia.org/
 ## Video 
 (Video to be completed)
 
-## Live Online Demo
+## Production
 
-Live near Kingswood, Surrey? [Order online!](https://khybertandoori.com/order/login)
+Live near Kingswood, Surrey in the UK and fancy a takeout? [Order online!](https://khybertandoori.com/order/login)
+
 NB: Not accessible outside the UK
 
 
