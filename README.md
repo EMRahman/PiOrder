@@ -3,7 +3,7 @@ Raspberry Pi & Pipsta based restaurant [Point of Sale](https://en.wikipedia.org/
 
 ## Images
 
-### At the restaurant:
+### At the Restaurant
 
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/image2.JPG)
 
@@ -11,7 +11,7 @@ Raspberry Pi & Pipsta based restaurant [Point of Sale](https://en.wikipedia.org/
 
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/image4.JPG)
 
-### Mobile ordering:
+### Mobile Ordering
 
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/IMG_1979.PNG)
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/IMG_1980.PNG)
