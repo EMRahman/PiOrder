@@ -53,7 +53,7 @@ NB: Not accessible outside the UK
    * The Pipsta printers are used to print the customer receipts or kitchen tickets (Python, Bash Scripts, SCP).
    * Orders arriving from a website are sent to the bar and kitchen for printing (SCP).
    * The website creation is agnostic, but we've used Symfony2 & PHP. Bash, Awk and Cron used for handling of the orders and current waiting time.
-   * No central database is used - using files is sufficient for this system.
+   * No central database is used - using files is sufficient.
 
 ### Hardware
 1. 2 x [RP Model 2B](https://www.raspberrypi.org/products/raspberry-pi-2-model-b)
