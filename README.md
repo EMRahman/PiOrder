@@ -3,7 +3,7 @@ Raspberry Pi & Pipsta based restaurant [Point of Sale](https://en.wikipedia.org/
 
 ## Images
 
-At the restaurant:
+### At the restaurant:
 
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/image2.JPG)
 
@@ -11,7 +11,7 @@ At the restaurant:
 
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/image4.JPG)
 
-Mobile ordering:
+### Mobile ordering:
 
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/IMG_1979.PNG)
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/IMG_1980.PNG)
@@ -27,10 +27,10 @@ Live near Kingswood, Surrey? [Order online!](https://khybertandoori.com/order/lo
 NB: Not accessible outside the UK
 
 
-### Topology
+## Topology
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/Topology.png)
 
-##Features
+## Features
 1. Tablet/touch based POS for waiters.
 2. Print bar receipts and tickets to the kitchen. 
 3. Online ordering for customers.
@@ -43,7 +43,7 @@ NB: Not accessible outside the UK
    * The website creation is agnostic, but we've used Symfony2 & PHP. Bash, Awk and Cron used for handling of the orders and current waiting time.
    * No central database is used - using files is sufficient.
 
-### Hardware
+## Hardware
 1. 2 x [RP Model 2B](https://www.raspberrypi.org/products/raspberry-pi-2-model-b)
 2. 2 x [Pipsta](http://www.pipsta.co.uk)
 3. 1 x Web Hosting ([we use 4uhosting.co.uk](https://www.4uhosting.co.uk))
@@ -52,7 +52,7 @@ NB: Not accessible outside the UK
 6. 1 (or more) Tablets (for web browsing)
 7. Optional: Raspberry Pi Cameras
 
-#FAQ's
+## FAQ's
 Q: Why print onto paper / why not go fully electronic?
 A: For customers, a paper receipt is still common. For chefs in the kitchen, paper has value in a kitchen environment. [An interesting discussion here](http://www.cheftalk.com/t/69312/for-those-in-professional-kitchens-ticket-taking-expediting).
 
