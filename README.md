@@ -37,7 +37,7 @@ No central database is used - using files is sufficient for this system.
 3. 1 x Web Hosting ([we use 4uhosting.co.uk](https://www.4uhosting.co.uk))
 4. 1 x Wifi router & internet connection
 5. 1 x Pair of Socket ethernet
-6. 1 (or more) Tablets (for web browser). We use 3.
+6. 1 (or more) Tablets (for web browser)
 
 ### Topology
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Topology.png)
