@@ -94,3 +94,9 @@ A: A) JustEat is just for online ordering (as far as I'm aware) and B) At the ti
 * [Article 1](http://www.managementtoday.co.uk/dont-eat-two-thirds-takeaways-say-just-eats-fees-unfair/article/1299038)
 * [Article 2](https://www.preoday.com/blog/just-eat-really-best-option-takeaway/)
 * [JustEat Official Costs](https://restaurants.just-eat.co.uk/benefits.html)
+
+Q: How reliable are the Pipsta printers, Raspberry Pi's and tablets? 
+A: We've been running all the above for a full year with no hardware based problems.
+
+Q: Which tablets are you using?
+A: Amazon Kindle Fires (2 x 7 inch and 1 x 10.1 inch)
