@@ -43,8 +43,8 @@ NB: Not accessible outside the UK
 4. Allow customers to order online:
    * Waiting time can set by waiters via the tablets and/or scheduled. Hangryness should not be underestimated (customers can get very angry if they are hungry and their order is late).
    * Customers order using a webpage. We use [JQuery Mobile](https://jquerymobile.com).
-   * Customer can retrieve ast orders, and take their time in ordering.
-   * Orders arrive straight to the bar and kitchen printers. 
+   * Customers can easily reload previous orders and take their time in ordering.
+   * Orders arrive straight to the bar and kitchen printers. Optional order review page and safety valves placed for security. 
    * Frees up waiters manually taking a telephone order. 
    * Receipts are emailed to the customers.
 
