@@ -12,8 +12,10 @@ Raspberry Pi & Pipsta based EPOS, Restaurant Ticketing &amp; Online Ordering.
 
 ## Live Online Demo
 
-NB: Not accessible outside of the UK
 https://khybertandoori.com/order/login
+
+NB: Not accessible outside of the UK
+
 
 ### Topology
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Topology.png)
