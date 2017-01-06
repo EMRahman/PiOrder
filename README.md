@@ -28,7 +28,7 @@ NB: Not accessible outside the UK
 
 
 ### Topology
-![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Topology.png)
+![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/Topology.png)
 
 ##Features
 1. Handling of all orders using a touch based EPOS by waiters. 
