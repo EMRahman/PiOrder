@@ -1,5 +1,5 @@
 # PiOrder
-Raspberry Pi & Pipsta based restaurant [Point of Sale](https://en.wikipedia.org/wiki/Point_of_sale#Hospitality_industry), Remote Kitchen Printing &amp; [Online Ordering](https://en.wikipedia.org/wiki/Online_food_ordering).
+Raspberry Pi & Pipsta based restaurant [Point of Sale](https://en.wikipedia.org/wiki/Point_of_sale#Hospitality_industry), [Remote Kitchen Printing](https://www.ecrs.com/products/point-of-sale-pos/remote-kitchen-printing/) &amp; [Online Ordering](https://en.wikipedia.org/wiki/Online_food_ordering).
 
 ## Images
 
