@@ -4,15 +4,15 @@ Raspberry Pi & Pipsta based restaurant [Point of Sale](https://en.wikipedia.org/
 ## Images
 
 ###Bar
-
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/image2.JPG)
 
 ###Kitchen
-
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/image4.JPG)
 
-###Online Ordering
+###Receipt Print Vs Kitchen Prints
+![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/IMG_1449.JPG)
 
+###Online Ordering
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/IMG_1982.PNG)
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/IMG_1983.PNG)
 
