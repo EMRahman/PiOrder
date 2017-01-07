@@ -9,7 +9,7 @@ Raspberry Pi & Pipsta based restaurant [Point of Sale](https://en.wikipedia.org/
 ###Kitchen
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/image4.JPG)
 
-###Receipt Print Vs Kitchen Prints
+###Receipt Print Vs Kitchen Print
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/IMG_1449.JPG)
 
 ###Online Ordering
