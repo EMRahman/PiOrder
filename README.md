@@ -1,6 +1,9 @@
 # PiOrder
 Raspberry Pi & Pipsta based restaurant [Point of Sale](https://en.wikipedia.org/wiki/Point_of_sale#Hospitality_industry), [Remote Kitchen Printing](https://www.ecrs.com/products/point-of-sale-pos/remote-kitchen-printing/) &amp; [Online Ordering](https://en.wikipedia.org/wiki/Online_food_ordering).
 
+## Video 
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/bYomIR-4Y0o/0.jpg)](https://www.youtube.com/watch?v=bYomIR-4Y0o)
+
 ## Images
 
 ###Bar
@@ -12,9 +15,6 @@ Raspberry Pi & Pipsta based restaurant [Point of Sale](https://en.wikipedia.org/
 ###Online Ordering
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/IMG_1982.PNG)
 ![ScreenShot](https://github.com/EMRahman/PiOrder/blob/master/Images/IMG_1983.PNG)
-
-## Video 
-(Video to be completed)
 
 ## Production
 
