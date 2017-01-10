@@ -7,7 +7,6 @@ import subprocess
 import kitchenPrint
 import shutil
 
-#TODO: handle printing of inhouse orders
 #Read argument of what should be printed via this printer
 if len(sys.argv) <3:
 	print "Usage: parseAndPrintJobAtKitchen.py <file to print> <dir on success> <dir on failure>"
