@@ -1,0 +1,2243 @@
+<html>
+<head>
+
+<script src="./jquery-1.10.2.js"></script>
+<script src="./jquery-ui.js"></script>
+
+<script>
+
+var deliveryMinAdjust = 0;
+//14 is max length for kitchen print out
+//Ordering of foodID matters as it then orders the order[] array
+var food = [
+	//Starters
+	{"foodID":"23","foodDescription":"Aloo Chat Puri","outDescrip":"Aloo Chat Puri","foodCategoryID":"3","inPrice":"4.15","outPrice":"3.95","cookingTime":"5","chef":"Side"},
+	{"foodID":"23.1","foodDescription":"Chana Chat","outDescrip":"Chana Chat","foodCategoryID":"3","inPrice":"4.35","outPrice":"4.20","cookingTime":"5","chef":"Side"},
+	{"foodID":"22","foodDescription":"Chicken Chat Puri","outDescrip":"Chi Chat Puri","foodCategoryID":"3","inPrice":"5.25","outPrice":"4.60","cookingTime":"5","chef":"Side"},
+	{"foodID":"11","foodDescription":"Chicken Tikka, Starter","outDescrip":"Chi Tikka Str","foodCategoryID":"3,25","inPrice":"4.35","outPrice":"3.95","cookingTime":"7","chef":"Tandoori"},
+	{"foodID":"11.1","foodDescription":"Duck Tikka, Starter","outDescrip":"Duck Tikka Str","foodCategoryID":"3","inPrice":"5.35","outPrice":"4.95","cookingTime":"7","chef":"Tandoori"},
+	{"foodID":"19","foodDescription":"Dahl Soup","outDescrip":"Dahl Soup","foodCategoryID":"3","inPrice":"3.25","outPrice":"3.10","cookingTime":"5","chef":"Side"},
+	{"foodID":"27","foodDescription":"Garlic Mushrooms","outDescrip":"Garlic Mush","foodCategoryID":"3","inPrice":"4.35","outPrice":"4.35","cookingTime":"5","chef":"Side"},
+	{"foodID":"10","foodDescription":"King Prawn Butterfly","outDescrip":"Kng Pra Bttfly","foodCategoryID":"3","inPrice":"7.25","outPrice":"7.25","cookingTime":"5","chef":"Side"},
+	{"foodID":"12","foodDescription":"Lamb Tikka, Starter","outDescrip":"Lamb Tikka","foodCategoryID":"3","inPrice":"4.35","outPrice":"3.95","cookingTime":"7","chef":"Tandoori"},
+	{"foodID":"24","foodDescription":"Meat Samosa","outDescrip":"Meat Samosa","foodCategoryID":"3","inPrice":"3.95","outPrice":"3.95","cookingTime":"5","chef":"Side"},
+	{"foodID":"18","foodDescription":"Mulligatawny Soup","outDescrip":"Mullgtwny Soup","foodCategoryID":"3","inPrice":"3.25","outPrice":"3.10","cookingTime":"5","chef":"Side"},
+	{"foodID":"20","foodDescription":"Onion Bhaji","outDescrip":"Onion Bhaji","foodCategoryID":"3","inPrice":"3.95","outPrice":"3.95","cookingTime":"5","chef":"Side"},
+	{"foodID":"21","foodDescription":"Prawn Puri","outDescrip":"Prawn Puri","foodCategoryID":"3","inPrice":"5.25","outPrice":"4.60","cookingTime":"5","chef":"Side"},
+	{"foodID":"21.2","foodDescription":"Paneer Tikka, Starter","outDescrip":"Paneer Tikka","foodCategoryID":"3","inPrice":"5.25","outPrice":"4.60","cookingTime":"5","chef":"Side"},
+        {"foodID":"21.1","foodDescription":"King Prawn Puri","outDescrip":"Kg Pra Puri","foodCategoryID":"3","inPrice":"7.25","outPrice":"6.95","cookingTime":"5","chef":"Side"},
+	{"foodID":"17","foodDescription":"Reshmi Kebab","outDescrip":"Reshmi Kebab","foodCategoryID":"3","inPrice":"4.75","outPrice":"4.45","cookingTime":"6","chef":"Side"},
+	{"foodID":"9", "foodDescription":"Salmon Tikka, Starter","outDescrip":"Salmon Tik St","foodCategoryID":"3","inPrice":"5.50","outPrice":"5.20","cookingTime":"6","chef":"Tandoori"},
+	{"foodID":"15","foodDescription":"Sheek Kebab","outDescrip":"Sheek Kebab","foodCategoryID":"3","inPrice":"4.35","outPrice":"3.95","cookingTime":"7","chef":"Tandoori"},
+	{"foodID":"16","foodDescription":"Shami Kebab","outDescrip":"Shami Kebab","foodCategoryID":"3","inPrice":"4.35","outPrice":"3.95","cookingTime":"6","chef":"Side"},
+	{"foodID":"14","foodDescription":"Tandoori Chicken, Starter","outDescrip":"Tand Chicken","foodCategoryID":"3","inPrice":"4.35","outPrice":"3.95","cookingTime":"6","chef":"Tandoori"},
+	{"foodID":"26","foodDescription":"Tandoori King Prawn, Starter","outDescrip":"Tan King Pra","foodCategoryID":"3","inPrice":"7.25","outPrice":"7.25","cookingTime":"7","chef":"Tandoori"},
+	{"foodID":"13","foodDescription":"Tandoori Lamb Chops","outDescrip":"Tan Lamb Chop","foodCategoryID":"3","inPrice":"5.25","outPrice":"4.45","cookingTime":"8","chef":"Tandoori"},
+	{"foodID":"13.1","foodDescription":"Tandoori Mix","outDescrip":"Tan Mix","foodCategoryID":"3","inPrice":"5.95","outPrice":"4.45","cookingTime":"8","chef":"Tandoori"},
+	{"foodID":"25","foodDescription":"Vegetable Samosa","outDescrip":"Veg Samsosa","foodCategoryID":"3","inPrice":"3.95","outPrice":"3.95","cookingTime":"6","chef":"Side"},
+	{"foodID":"25.1","foodDescription":"Prawn Cocktail","outDescrip":"Prawn Cocktail","foodCategoryID":"3","inPrice":"4.20","outPrice":"4.00","cookingTime":"5","chef":"Side"},
+	//Tandoori Dishes
+	{"foodID":"34","foodDescription":"Chicken Shashlick","outDescrip":"Chic Shashlk","foodCategoryID":"4","inPrice":"9.45","outPrice":"8.50"},
+	{"foodID":"30","foodDescription":"Chicken Tikka, Main","outDescrip":"Chi Tikka Main","foodCategoryID":"4,25","inPrice":"7.95","outPrice":"7.50"},
+	{"foodID":"32","foodDescription":"Duck Tikka, Main","outDescrip":"Duck Tik Main","foodCategoryID":"4","inPrice":"10.50","outPrice":"10.45"},
+	{"foodID":"36","foodDescription":"Duck Sashlick","outDescrip":"Duck Shashlick","foodCategoryID":"4","inPrice":"11.70","outPrice":"11.45"},
+	{"foodID":"37","foodDescription":"King Prawn Shashlick","outDescrip":"Kg Praw Shash","foodCategoryID":"4","inPrice":"14.45","outPrice":"13.45"},
+	{"foodID":"31","foodDescription":"Lamb Tikka, Main","outDescrip":"Lm Tikka Main","foodCategoryID":"4","inPrice":"7.95","outPrice":"7.50"},
+	{"foodID":"35","foodDescription":"Lamb Sashlick","outDescrip":"Lamb Sashlick","foodCategoryID":"4","inPrice":"9.45","outPrice":"7.95"},
+	{"foodID":"35.1","foodDescription":"Paneer Tikka, Main","outDescrip":"Paneer Tikka","foodCategoryID":"4","inPrice":"10.50","outPrice":"9.35"},
+	{"foodID":"29","foodDescription":"Tandoori Chicken, Main","outDescrip":"Tan Chi Main","foodCategoryID":"4,25","inPrice":"7.95","outPrice":"7.50"},
+	{"foodID":"33","foodDescription":"Tandoori King Prawn, Main","outDescrip":"Tan Kng Pra","foodCategoryID":"4","inPrice":"13.95","outPrice":"13.25"},
+	{"foodID":"28","foodDescription":"Tandoori Mix Grill","outDescrip":"Tan Mix Grill","foodCategoryID":"4","inPrice":"14.95","outPrice":"13.55"},
+	{"foodID":"38","foodDescription":"Salmon Tikka, Main","outDescrip":"Salmon Tik Ma","foodCategoryID":"4","inPrice":"11.00","outPrice":"10.40"},
+	{"foodID":"39","foodDescription":"Sheek Kebab","outDescrip":"Sheek Kebab","foodCategoryID":"4","inPrice":"7.95","outPrice":"7.50"},
+	//House specialities
+	{"foodID":"48","foodDescription":"Badam-E-Murgh","outDescrip":"Badam-E-Murgh","foodCategoryID":"5","inPrice":"9.25","outPrice":"8.35"},
+        {"foodID":"48.1","foodDescription":"Badam-E-King Prawn","outDescrip":"Badm-E-KngPrw","foodCategoryID":"5","inPrice":"14.45","outPrice":"13.75"},
+	{"foodID":"45","foodDescription":"Begum Bahar","outDescrip":"Begum Bahar","foodCategoryID":"5","inPrice":"9.25","outPrice":"8.35"},
+	{"foodID":"63","foodDescription":"Butter Chicken","outDescrip":"Butter Chi","foodCategoryID":"5","inPrice":"9.25","outPrice":"8.35"},
+	{"foodID":"56","foodDescription":"Chicken Jeera","outDescrip":"Chi Jeera","foodCategoryID":"5","inPrice":"9.25","outPrice":"8.35"},
+	{"foodID":"42","foodDescription":"Chicken Pasanda","outDescrip":"Chi Pasanda","foodCategoryID":"5","inPrice":"9.45","outPrice":"8.75"},
+	{"foodID":"64","foodDescription":"Chicken Tikka Bhuna","outDescrip":"Chi Tik Bhuna","foodCategoryID":"5","inPrice":"9.25","outPrice":"7.50"},
+	{"foodID":"60","foodDescription":"Chicken Tikka Garlic","outDescrip":"Chi Tik Garl","foodCategoryID":"5","inPrice":"9.45","outPrice":"8.35"},
+	{"foodID":"46","foodDescription":"Chicken Tikka Jalfrezi","outDescrip":"Chi Tik Jalf","foodCategoryID":"5","inPrice":"9.25","outPrice":"8.35"},
+	{"foodID":"46.1","foodDescription":"Chicken Chilli Jalfrezi","outDescrip":"Chi Chili Jalf","foodCategoryID":"5","inPrice":"9.25","outPrice":"8.35"},
+	{"foodID":"40","foodDescription":"Chicken Tikka Masala","outDescrip":"CTM","foodCategoryID":"5,25","inPrice":"9.25","outPrice":"8.35"},
+        {"foodID":"40.1","foodDescription":"Chicken Chilli Masala","outDescrip":"Chi Chilli Mas","foodCategoryID":"5","inPrice":"9.25","outPrice":"8.50"},
+	{"foodID":"61.5","foodDescription":"Dhania Chicken","outDescrip":"Dhania Chic","foodCategoryID":"5","inPrice":"10.50","outPrice":"10.00"},
+	{"foodID":"61.6","foodDescription":"Dhania Lamb","outDescrip":"Dhania Lamb","foodCategoryID":"5","inPrice":"10.50","outPrice":"10.00"},
+	{"foodID":"67","foodDescription":"Duck Chilli Masala","outDescrip":"Duck Tik Mas","foodCategoryID":"5","inPrice":"11.45","outPrice":"11.25"},
+	{"foodID":"44","foodDescription":"Duck Pasanda","outDescrip":"Duck Pasanda","foodCategoryID":"5","inPrice":"11.65","outPrice":"11.35"},
+	{"foodID":"68","foodDescription":"Duck Tikka Bhuna","outDescrip":"Duck Tik Bhuna","foodCategoryID":"5","inPrice":"11.45","outPrice":"10.45"},
+	{"foodID":"69","foodDescription":"Duck Tikka Dupiaza","outDescrip":"Duck Tik Dup","foodCategoryID":"5","inPrice":"11.45","outPrice":"10.45"},
+	{"foodID":"58","foodDescription":"Duck Tikka Garlic","outDescrip":"Duck Tik Garl","foodCategoryID":"5","inPrice":"11.45","outPrice":"10.95"},
+	{"foodID":"49","foodDescription":"Duck Tikka Jalfrezi","outDescrip":"Duck Tik Jlfrz","foodCategoryID":"5","inPrice":"11.45","outPrice":"10.95"},
+	{"foodID":"40.2","foodDescription":"Duck Tikka Masala","outDescrip":"Duck Tik Masal","foodCategoryID":"5","inPrice":"11.45","outPrice":"10.95"},
+	{"foodID":"70","foodDescription":"Duck Tikka Sag","outDescrip":"Duck Tik Sag","foodCategoryID":"5","inPrice":"11.45","outPrice":"10.45"},	
+	{"foodID":"55","foodDescription":"Ginger King Prawn","outDescrip":"Ging Kng Pra","foodCategoryID":"5","inPrice":"14.45","outPrice":"13.45"},
+	{"foodID":"54","foodDescription":"King Prawn Jalfrezi","outDescrip":"Kng Pra Jlfrz","foodCategoryID":"5","inPrice":"14.45","outPrice":"13.45"},
+	{"foodID":"54.1","foodDescription":"King Prawn Korahi","outDescrip":"Kng Pra Korahi","foodCategoryID":"5","inPrice":"14.45","outPrice":"13.45"},
+	{"foodID":"50","foodDescription":"Korahi Chicken","outDescrip":"Korahi Chi","foodCategoryID":"5","inPrice":"9.45","outPrice":"8.65"},
+	{"foodID":"51","foodDescription":"Korahi Lamb","outDescrip":"Korahi Lamb","foodCategoryID":"5","inPrice":"9.45","outPrice":"8.65"},
+	{"foodID":"52","foodDescription":"Korahi Duck","outDescrip":"Korahi Duck","foodCategoryID":"5","inPrice":"11.65","outPrice":"11.25"},
+	{"foodID":"43","foodDescription":"Lamb Pasanda","outDescrip":"Lamb Pasanda","foodCategoryID":"5","inPrice":"9.45","outPrice":"8.75"},
+	{"foodID":"41","foodDescription":"Lamb Tikka Masala","outDescrip":"Lamb Tik Mas","foodCategoryID":"5","inPrice":"9.25","outPrice":"8.35"},
+	{"foodID":"47","foodDescription":"Lamb Tikka Jalfrezi","outDescrip":"Lm Tik Jalfrz","foodCategoryID":"5","inPrice":"9.25","outPrice":"8.35"},
+	{"foodID":"47.1","foodDescription":"Lamb Chilli Jalfrezi","outDescrip":"Lm Chili Jalfz","foodCategoryID":"5","inPrice":"9.45","outPrice":"8.50"},
+	{"foodID":"57","foodDescription":"Lamb Jeera","outDescrip":"Lamb Jeera","foodCategoryID":"5","inPrice":"9.25","outPrice":"8.35"},
+	{"foodID":"66","foodDescription":"Lamb Chilli Masala","outDescrip":"Lam Chili Mas","foodCategoryID":"5","inPrice":"9.25","outPrice":"8.50"},
+	{"foodID":"62.1","foodDescription":"Lamb Shank","outDescrip":"Lamb Shank","foodCategoryID":"5","inPrice":"11.45","outPrice":"11.95"},
+	{"foodID":"62","foodDescription":"Lamb Laziz","outDescrip":"Lamb Laziz","foodCategoryID":"5","inPrice":"9.45","outPrice":"8.65"},
+	{"foodID":"65","foodDescription":"Lamb Tikka Bhuna","outDescrip":"Lamb Tik Bhuna","foodCategoryID":"5","inPrice":"9.25","outPrice":"7.50"},
+	{"foodID":"61","foodDescription":"Lamb Tikka Garlic","outDescrip":"Lam Tik Garl","foodCategoryID":"5","inPrice":"9.45","outPrice":"8.35"},
+	{"foodID":"61.1","foodDescription":"Lemon Chicken","outDescrip":"Lemon Chi","foodCategoryID":"5","inPrice":"9.25","outPrice":"8.50"},
+	{"foodID":"61.2","foodDescription":"Lemon Lamb","outDescrip":"Lemon Lamb","foodCategoryID":"5","inPrice":"9.25","outPrice":"8.50"},
+	{"foodID":"61.3","foodDescription":"Muglai Chicken","outDescrip":"Muglai Chic","foodCategoryID":"5","inPrice":"10.50","outPrice":"10.00"},
+	{"foodID":"61.4","foodDescription":"Muglai Lamb","outDescrip":"Muglai Lamb","foodCategoryID":"5","inPrice":"10.50","outPrice":"10.00"},
+	{"foodID":"61.7","foodDescription":"Paneer Tikka Masala","outDescrip":"Paneer Tik Mas","foodCategoryID":"5,25","inPrice":"9.25","outPrice":"8.35"},
+	{"foodID":"53","foodDescription":"Tandoori King Prawn Masala","outDescrip":"Tan Kg Pro Mas","foodCategoryID":"5","inPrice":"14.45","outPrice":"13.45"},
+	{"foodID":"59","foodDescription":"Tandoori King Prawn Garlic","outDescrip":"Tn Kg Pro Garl","foodCategoryID":"5","inPrice":"14.45","outPrice":"13.45"},
+	{"foodID":"59.1","foodDescription":"Tandoori King Prawn Pasanda","outDescrip":"Tn Kg Pro Pass","foodCategoryID":"5","inPrice":"14.45","outPrice":"13.45"},
+	{"foodID":"59.12","foodDescription":"Lamb and Kg Pro Madras (no green peppers)","outDescrip":"Lamb and Kg Pro Mad (no green peppers)","foodCategoryID":"5","inPrice":"14.95","outPrice":"13.95"},
+	{"foodID":"59.121","foodDescription":"Lamb and Kg Pro Jalfrezi (no green peppers)","outDescrip":"Lamb and Kg Pro Jalfrezi (no green peppers)","foodCategoryID":"5","inPrice":"14.95","outPrice":"13.95"},
+	{"foodID":"59.13","foodDescription":"Vegetable Masala","outDescrip":"Veg Mas","foodCategoryID":"5","inPrice":"7.50","outPrice":"6.50"},
+	//Dansak
+	{"foodID":"71","foodDescription":"Chicken Dansak","outDescrip":"Chi DSK","foodCategoryID":"7","inPrice":"9.95","outPrice":"8.95"},	
+	{"foodID":"71.1","foodDescription":"Chicken Tikka Dansak","outDescrip":"Chi Tikka DSK","foodCategoryID":"7","inPrice":"10.95","outPrice":"9.95"},	
+	{"foodID":"79.0","foodDescription":"Duck Dansak","outDescrip":"Duck DSK","foodCategoryID":"7","inPrice":"12.95","outPrice":"9.75"},	
+	{"foodID":"79","foodDescription":"Duck Tikka Dansak","outDescrip":"Duck Tik DSK","foodCategoryID":"7","inPrice":"13.95","outPrice":"10.75"},	
+	{"foodID":"77","foodDescription":"King Prawn Dansak","outDescrip":"Kg Prawn DSK","foodCategoryID":"7","inPrice":"14.35","outPrice":"12.95"},	
+	{"foodID":"72","foodDescription":"Lamb Dansak","outDescrip":"Lamb DSK","foodCategoryID":"7","inPrice":"9.95","outPrice":"8.95"},	
+	{"foodID":"72.1","foodDescription":"Lamb Tikka Dansak","outDescrip":"Lamb Tika DSK","foodCategoryID":"7","inPrice":"10.95","outPrice":"9.95"},	
+	{"foodID":"75","foodDescription":"Prawn Dansak","outDescrip":"Prawn DSK","foodCategoryID":"7","inPrice":"10.15","outPrice":"9.50"},	
+	{"foodID":"71.0","foodDescription":"Vegetable Dansak","outDescrip":"Veg DSK","foodCategoryID":"7","inPrice":"8.95","outPrice":"8.80"},	
+	//Pathia
+	{"foodID":"73","foodDescription":"Chicken Pathia","outDescrip":"Chi Pathia","foodCategoryID":"7","inPrice":"9.95","outPrice":"8.95"},	
+	{"foodID":"73.1","foodDescription":"Chicken Tikka Pathia","outDescrip":"Chi Tik Path","foodCategoryID":"7","inPrice":"10.95","outPrice":"9.95"},	
+	{"foodID":"80","foodDescription":"Duck Tikka Pathia","outDescrip":"Duck Tik Path","foodCategoryID":"7","inPrice":"13.95","outPrice":"10.75"},
+	{"foodID":"78","foodDescription":"King Prawn Pathia","outDescrip":"Kg Prawn Path","foodCategoryID":"7","inPrice":"14.35","outPrice":"12.95"},	
+	{"foodID":"74","foodDescription":"Lamb Pathia","outDescrip":"Lamb Pathia","foodCategoryID":"7","inPrice":"9.95","outPrice":"8.95"},	
+	{"foodID":"74.1","foodDescription":"Lamb Tikka Pathia","outDescrip":"Lamb Tik Path","foodCategoryID":"7","inPrice":"10.95","outPrice":"9.95"},	
+	{"foodID":"76","foodDescription":"Prawn Pathia","outDescrip":"Prawn Pathia","foodCategoryID":"7","inPrice":"9.95","outPrice":"9.50"},
+	//Chicken
+	{"foodID":"94","foodDescription":"Achari Chicken","outDescrip":"Achari Chi","foodCategoryID":"9","inPrice":"8.75","outPrice":"7.25"},
+	{"foodID":"81","foodDescription":"Chicken Curry","outDescrip":"Chick Curry","foodCategoryID":"9","inPrice":"6.95","outPrice":"6.45"},
+	{"foodID":"82","foodDescription":"Chicken Madras","outDescrip":"Chick Madras","foodCategoryID":"9","inPrice":"6.95","outPrice":"6.45"},
+	{"foodID":"83","foodDescription":"Chicken Vindaloo","outDescrip":"Chi Vindaloo","foodCategoryID":"9","inPrice":"6.95","outPrice":"6.45"},
+	{"foodID":"84","foodDescription":"Chicken Bhuna","outDescrip":"Chi Bhuna","foodCategoryID":"9","inPrice":"7.25","outPrice":"6.75"},
+        {"foodID":"64.1","foodDescription":"Chicken Tikka Bhuna","outDescrip":"Chi Tik Bhuna","foodCategoryID":"9","inPrice":"9.25","outPrice":"7.50"},
+	{"foodID":"85","foodDescription":"Chicken Korma","outDescrip":"Chi Korma","foodCategoryID":"9,25","inPrice":"7.55","outPrice":"6.75"},
+	{"foodID":"85.1","foodDescription":"Chicken Tikka Korma","outDescrip":"Chi Tik Korma","foodCategoryID":"9,25","inPrice":"8.55","outPrice":"7.75"},
+	{"foodID":"86","foodDescription":"Kashmiri Chicken","outDescrip":"Kashmiri Chi","foodCategoryID":"9","inPrice":"7.55","outPrice":"6.95"},
+	{"foodID":"87","foodDescription":"Chicken Dupiaza","outDescrip":"Chi Dup","foodCategoryID":"9","inPrice":"7.25","outPrice":"6.75"},
+	{"foodID":"88","foodDescription":"Chicken Malaya","outDescrip":"Chi Malaya","foodCategoryID":"9","inPrice":"7.25","outPrice":"6.75"},
+	{"foodID":"89","foodDescription":"Sag Chicken","outDescrip":"Sag Chi","foodCategoryID":"9","inPrice":"7.25","outPrice":"6.75"},
+	{"foodID":"90","foodDescription":"Chicken Bombay","outDescrip":"Chi Bombay","foodCategoryID":"9","inPrice":"7.25","outPrice":"6.75"},
+	{"foodID":"90.1","foodDescription":"Methi Chicken","outDescrip":"Methi Chi","foodCategoryID":"9","inPrice":"7.25","outPrice":"6.75"},
+	{"foodID":"91","foodDescription":"Rogan Chicken","outDescrip":"Rogan Chi","foodCategoryID":"9","inPrice":"7.25","outPrice":"6.75"},
+	{"foodID":"91.1","foodDescription":"Rogan Chicken Tikka","outDescrip":"Rogan Chi Tik","foodCategoryID":"9","inPrice":"8.25","outPrice":"7.75"},
+	{"foodID":"92","foodDescription":"Chicken Shatkora","outDescrip":"Chi Shatkora","foodCategoryID":"9","inPrice":"8.75","outPrice":"7.00"},
+	{"foodID":"93","foodDescription":"Tamarind Chicken","outDescrip":"Tamarind Chi","foodCategoryID":"9","inPrice":"8.75","outPrice":"7.25"},
+	{"foodID":"93.1","foodDescription":"Mango Chicken","outDescrip":"Mango Chi","foodCategoryID":"9","inPrice":"8.75","outPrice":"7.25"},
+	//Lamb
+	{"foodID":"109","foodDescription":"Achari Lamb","outDescrip":"Achari Lamb","foodCategoryID":"10","inPrice":"8.75","outPrice":"7.25"},
+	{"foodID":"95","foodDescription":"Keema Peas Bhuna","outDescrip":"Keema Peas Bhu","foodCategoryID":"10","inPrice":"7.25","outPrice":"6.45"},
+	{"foodID":"95.1","foodDescription":"Keema Aloo","outDescrip":"Keema Aloo","foodCategoryID":"10","inPrice":"7.25","outPrice":"6.45"},
+	{"foodID":"96","foodDescription":"Lamb Curry","outDescrip":"Lamb Curry","foodCategoryID":"10","inPrice":"6.95","outPrice":"6.45"},
+	{"foodID":"97","foodDescription":"Lamb Madras","outDescrip":"Lamb Madras","foodCategoryID":"10","inPrice":"6.95","outPrice":"6.45"},
+	{"foodID":"98","foodDescription":"Lamb Vindaloo","outDescrip":"Lamb Vindaloo","foodCategoryID":"10","inPrice":"6.95","outPrice":"6.45"},
+	{"foodID":"99","foodDescription":"Lamb Bhuna","outDescrip":"Lamb Bhuna","foodCategoryID":"10","inPrice":"7.25","outPrice":"6.75"},
+	{"foodID":"100","foodDescription":"Lamb Korma","outDescrip":"Lamb Korma","foodCategoryID":"10","inPrice":"7.55","outPrice":"6.75"},
+	{"foodID":"101","foodDescription":"Kashmiri Lamb","outDescrip":"Kashmiri Lamb","foodCategoryID":"10","inPrice":"7.55","outPrice":"6.95"},
+	{"foodID":"102","foodDescription":"Lamb Dupiaza","outDescrip":"Lamb Dupiaza","foodCategoryID":"10","inPrice":"7.25","outPrice":"6.75"},
+	{"foodID":"103","foodDescription":"Lamb Malaya","outDescrip":"Lamb Malaya","foodCategoryID":"10","inPrice":"7.25","outPrice":"6.75"},
+	{"foodID":"104","foodDescription":"Sag Gost or Lamb","outDescrip":"Sag Lamb","foodCategoryID":"10","inPrice":"7.25","outPrice":"6.75"},
+	{"foodID":"105","foodDescription":"Lamb Bombay","outDescrip":"Lamb Bombay","foodCategoryID":"10","inPrice":"7.25","outPrice":"6.75"},
+	{"foodID":"106","foodDescription":"Lamb Rogan Josh","outDescrip":"Lamb Rog Josh","foodCategoryID":"10","inPrice":"7.25","outPrice":"6.75"},
+	{"foodID":"106.1","foodDescription":"Lamb Rogan Tikka","outDescrip":"Lamb Rogan Tik","foodCategoryID":"10","inPrice":"8.25","outPrice":"7.75"},
+	{"foodID":"107","foodDescription":"Lamb Shatkora","outDescrip":"Lamb Shatkora","foodCategoryID":"10","inPrice":"7.25","outPrice":"7.00"},
+	{"foodID":"108","foodDescription":"Tamarind Lamb","outDescrip":"Tamarind Lamb","foodCategoryID":"10","inPrice":"7.25","outPrice":"7.25"},
+	{"foodID":"109.1","foodDescription":"Meat Methi","outDescrip":"Meat Methi","foodCategoryID":"10","inPrice":"7.25","outPrice":"6.75"},
+
+        //Duck
+	{"foodID":"99.22","foodDescription":"Duck Tikka Bhuna","outDescrip":"Duck Tik Bhuna","foodCategoryID":"10","inPrice":"10.95","outPrice":"7.75"},
+	{"foodID":"102.22","foodDescription":"Duck Tikka Dupiaza","outDescrip":"Duck Tik Dop","foodCategoryID":"10","inPrice":"10.95","outPrice":"7.75"},
+	{"foodID":"106.22","foodDescription":"Duck Tikka Rogon","outDescrip":"Duck Tik Rogon","foodCategoryID":"10","inPrice":"10.95","outPrice":"7.75"},
+	{"foodID":"104.22","foodDescription":"Duck Tikka Sag","outDescrip":"Duck Tik Sag","foodCategoryID":"10","inPrice":"10.95","outPrice":"7.75"},
+	{"foodID":"100.22","foodDescription":"Duck Tikka Korma ","outDescrip":"Duck Tik Korma","foodCategoryID":"10","inPrice":"10.95","outPrice":"7.75"},
+	{"foodID":"109.22","foodDescription":"Duck Tikka Methi","outDescrip":"Duck Tik Methi","foodCategoryID":"10","inPrice":"10.95","outPrice":"7.75"},
+
+	//Fish
+	{"foodID":"110.1","foodDescription":"Chingri Dopiaza","outDescrip":"Chingri Dop","foodCategoryID":"11","inPrice":"7.95","outPrice":"7.45"},
+	{"foodID":"110","foodDescription":"Fish Bhuna","outDescrip":"Fish Bhuna","foodCategoryID":"11","inPrice":"8.25","outPrice":"7.45"},
+	{"foodID":"111","foodDescription":"Fish Dopiaza","outDescrip":"Fish Dup","foodCategoryID":"11","inPrice":"8.25","outPrice":"7.45"},
+	{"foodID":"112","foodDescription":"Fish Jalfrezi","outDescrip":"Fish Jalfzi","foodCategoryID":"11","inPrice":"8.25","outPrice":"7.45"},
+	{"foodID":"113","foodDescription":"Prawn Dupiaza","outDescrip":"Prawn Dup","foodCategoryID":"11","inPrice":"8.25","outPrice":"7.45"},
+	{"foodID":"114","foodDescription":"Prawn Curry","outDescrip":"Prawn Curry","foodCategoryID":"11","inPrice":"7.25","outPrice":"6.75"},
+	{"foodID":"115","foodDescription":"Prawn Madras","outDescrip":"Prawn Madras","foodCategoryID":"11","inPrice":"7.25","outPrice":"6.75"},
+	{"foodID":"116","foodDescription":"Prawn Vindaloo","outDescrip":"Praw Vindaloo","foodCategoryID":"11","inPrice":"7.25","outPrice":"6.75"},
+	{"foodID":"117","foodDescription":"Prawn Bhuna","outDescrip":"Prawn Bhuna","foodCategoryID":"11","inPrice":"7.55","outPrice":"7.15"},
+	{"foodID":"118","foodDescription":"Prawn Sag","outDescrip":"Prawn Sag","foodCategoryID":"11","inPrice":"7.55","outPrice":"7.15"},
+	{"foodID":"119","foodDescription":"Prawn Korma","outDescrip":"Prawn Korma","foodCategoryID":"11","inPrice":"7.95","outPrice":"7.65"},
+	{"foodID":"120","foodDescription":"King Prawn Curry","outDescrip":"Kng Pra Cur","foodCategoryID":"11","inPrice":"11.25","outPrice":"10.45"},
+	{"foodID":"121","foodDescription":"King Prawn Madras","outDescrip":"Kng Pro Madras","foodCategoryID":"11","inPrice":"11.25","outPrice":"10.45"},
+	{"foodID":"122","foodDescription":"King Prawn Vindaloo","outDescrip":"Kng Pro Vind","foodCategoryID":"11","inPrice":"11.25","outPrice":"10.45"},
+	{"foodID":"123","foodDescription":"King Prawn Bhuna","outDescrip":"Kng Pro Bhuna","foodCategoryID":"11","inPrice":"11.55","outPrice":"10.95"},
+	{"foodID":"124","foodDescription":"King Prawn Korma","outDescrip":"Kng Pro Korma","foodCategoryID":"11","inPrice":"11.55","outPrice":"11.45"},
+	{"foodID":"125","foodDescription":"King Prawn Sag","outDescrip":"Kng Pro Sag","foodCategoryID":"11","inPrice":"11.55","outPrice":"10.95"},
+	{"foodID":"125.1","foodDescription":"King Prawn Lemon","outDescrip":"Kng Pro Lemon","foodCategoryID":"11","inPrice":"11.55","outPrice":"10.95"},
+	//Balti Curries
+	{"foodID":"126","foodDescription":"Balti Chicken Curry","outDescrip":"B Chi Curry","foodCategoryID":"12","inPrice":"7.45","outPrice":"7.25"},
+	{"foodID":"127","foodDescription":"Balti Chicken Madras","outDescrip":"B Chi Madras","foodCategoryID":"12","inPrice":"7.45","outPrice":"7.25"},
+	{"foodID":"128","foodDescription":"Balti Chicken Bhuna","outDescrip":"B Chi Bhuna","foodCategoryID":"12","inPrice":"7.45","outPrice":"7.25"},
+	{"foodID":"129","foodDescription":"Balti Chicken Vindaloo","outDescrip":"B Chi Vind","foodCategoryID":"12","inPrice":"7.45","outPrice":"7.25"},
+	{"foodID":"130","foodDescription":"Balti Lamb Curry","outDescrip":"B Lam Curry","foodCategoryID":"12","inPrice":"7.45","outPrice":"7.25"},
+	{"foodID":"131","foodDescription":"Balti Lamb Madras","outDescrip":"B Lam Madras","foodCategoryID":"12","inPrice":"7.45","outPrice":"7.25"},
+	{"foodID":"132","foodDescription":"Balti Lamb Bhuna","outDescrip":"B Lam Bhuna","foodCategoryID":"12","inPrice":"7.45","outPrice":"7.25"},
+	{"foodID":"133","foodDescription":"Balti Lamb Vindaloo","outDescrip":"B Lam Vind","foodCategoryID":"12","inPrice":"7.45","outPrice":"7.25"},
+	{"foodID":"134","foodDescription":"Balti Prawn Curry","outDescrip":"B Pro Curry","foodCategoryID":"12","inPrice":"7.45","outPrice":"7.25"},
+	{"foodID":"135","foodDescription":"Balti Prawn Madras","outDescrip":"B Pro Madras","foodCategoryID":"12","inPrice":"7.45","outPrice":"7.25"},
+	{"foodID":"136","foodDescription":"Balti Prawn Bhuna","outDescrip":"Bal Pro Bhuna","foodCategoryID":"12","inPrice":"7.45","outPrice":"7.25"},
+	{"foodID":"137","foodDescription":"Balti Prawn Vindaloo","outDescrip":"B Pro Vindaloo","foodCategoryID":"12","inPrice":"7.45","outPrice":"7.25"},
+	{"foodID":"138","foodDescription":"Balti King Prawn Curry","outDescrip":"B Kng Pro Cur","foodCategoryID":"12","inPrice":"11.45","outPrice":"9.95"},
+	{"foodID":"139","foodDescription":"Balti King Prawn Madras","outDescrip":"B Kng Pro Mad","foodCategoryID":"12","inPrice":"11.45","outPrice":"9.95"},
+	{"foodID":"140","foodDescription":"Balti King Prawn Bhuna","outDescrip":"B Kng Pro Bhun","foodCategoryID":"12","inPrice":"11.45","outPrice":"9.95"},
+	{"foodID":"141","foodDescription":"Balti King Prawn Vindaloo","outDescrip":"B Kng Pro Vind","foodCategoryID":"12","inPrice":"11.45","outPrice":"9.95"},	
+	{"foodID":"141.1","foodDescription":"Balti Vegetable","outDescrip":"B Veg","foodCategoryID":"12","inPrice":"7.45","outPrice":"6.95"},	
+	//Balti Special
+	{"foodID":"142","foodDescription":"Special Chicken Balti","outDescrip":"Spec Chi Bal","foodCategoryID":"13","inPrice":"8.45","outPrice":"7.65"},
+	{"foodID":"143","foodDescription":"Special Lamb Balti","outDescrip":"Spec Lamb Bal","foodCategoryID":"13","inPrice":"8.45","outPrice":"7.65"},
+	{"foodID":"144","foodDescription":"Special Duck Balti","outDescrip":"Spec Duck Bal","foodCategoryID":"13","inPrice":"11.65","outPrice":"10.85"},
+	{"foodID":"145","foodDescription":"Special Prawn Balti","outDescrip":"Spec Pro Bal","foodCategoryID":"13","inPrice":"8.45","outPrice":"7.95"},
+	{"foodID":"146","foodDescription":"Special King Prawn Balti","outDescrip":"Spec KngPro Bal","foodCategoryID":"13","inPrice":"12.45","outPrice":"13.25"},
+	{"foodID":"147","foodDescription":"Special Navrattan","outDescrip":"Spec Navrattan","foodCategoryID":"13","inPrice":"11.45","outPrice":"9.95"},
+	//Balti Jalfrezi
+	{"foodID":"148","foodDescription":"Balti Chicken Jalfrezi","outDescrip":"B Chi Jalfrzi","foodCategoryID":"14","inPrice":"9.75","outPrice":"8.85"},
+	{"foodID":"149","foodDescription":"Balti Lamb Jalfrezi","outDescrip":"B Lam Jalfrzi","foodCategoryID":"14","inPrice":"9.75","outPrice":"8.85"},
+	{"foodID":"150","foodDescription":"Balti Duck Jalfrezi","outDescrip":"B Duck Jalfrzi","foodCategoryID":"14","inPrice":"11.95","outPrice":"11.95"},
+	{"foodID":"151","foodDescription":"Balti King Prawn Jalfrezi","outDescrip":"B Kng Pro Jal","foodCategoryID":"14","inPrice":"14.45","outPrice":"13.75"},
+	//Balti Tikka Masala or Pasanda
+	{"foodID":"152","foodDescription":"Balti Chicken Tikka Masala","outDescrip":"B Chi Tik Mas","foodCategoryID":"15","inPrice":"9.75","outPrice":"8.85"},
+	{"foodID":"153","foodDescription":"Balti Lamb Tikka Masala","outDescrip":"B Lam Tik Mas","foodCategoryID":"15","inPrice":"9.75","outPrice":"8.85"},
+	{"foodID":"154","foodDescription":"Balti Duck Tikka Masala","outDescrip":"B Duck Tik Mas","foodCategoryID":"15","inPrice":"11.85","outPrice":"11.55"},
+	{"foodID":"155","foodDescription":"Balti Tandoori King Prawn Masala","outDescrip":"B Tn Kg Pr Mas","foodCategoryID":"15","inPrice":"14.45","outPrice":"13.25"},
+	{"foodID":"156","foodDescription":"Balti Chicken Pasanda","outDescrip":"B Chi Pasanda","foodCategoryID":"15","inPrice":"9.75","outPrice":"8.95"},
+	{"foodID":"157","foodDescription":"Balti Lamb Pasanda","outDescrip":"B Lamb Pas","foodCategoryID":"15","inPrice":"9.75","outPrice":"8.95"},
+	{"foodID":"158","foodDescription":"Balti Duck Tikka Pasanda","outDescrip":"B Duck Tik Pas","foodCategoryID":"15","inPrice":"11.85","outPrice":"11.75"},
+	{"foodID":"159","foodDescription":"Balti King Prawn Pasanda","outDescrip":"B Kng Pro Pas","foodCategoryID":"15","inPrice":"14.45","outPrice":"13.55"},
+	//Balti Vegetable Side Dishes
+	{"foodID":"160","foodDescription":"Balti Bhindi","outDescrip":"Bal Bhindi","foodCategoryID":"19.1","inPrice":"4.55","outPrice":"4.45"},
+	{"foodID":"161","foodDescription":"Balti Mixed Vegetable Curry","outDescrip":"B Mix Veg Cur","foodCategoryID":"19.1","inPrice":"4.55","outPrice":"4.45"},
+	{"foodID":"162","foodDescription":"Balti Mixed Vegetable Dry","outDescrip":"B Mix Veg Dry","foodCategoryID":"19.1","inPrice":"4.55","outPrice":"4.45"},
+        {"foodID":"162.1","foodDescription":"Balti Chana Mixed Vegetable Dry","foodText":"Balti mixed vegetable with chick pea","outDescrip":"B Chana Mix Veg Dry","foodCategoryID":"19.1","inPrice":"4.55","outPrice":"4.45"},
+	{"foodID":"163","foodDescription":"Balti Sag","outDescrip":"Balti Sag","foodCategoryID":"19.1","inPrice":"4.55","outPrice":"4.45"},
+	{"foodID":"164","foodDescription":"Balti Mushroom","outDescrip":"Balti Mushroom","foodCategoryID":"19.1","inPrice":"4.55","outPrice":"4.45"},
+	{"foodID":"165","foodDescription":"Balti Begun","outDescrip":"Balti Begun","foodCategoryID":"19.1","inPrice":"4.55","outPrice":"4.45"},
+	{"foodID":"166","foodDescription":"Balti Bombay Aloo","outDescrip":"B Bomb Aloo","foodCategoryID":"19.1","inPrice":"4.55","outPrice":"4.45"},
+	//TODO Above as Main; and ensure in the main section
+	//Biriyani
+	{"foodID":"167","foodDescription":"Chicken Tikka Biriyani","outDescrip":"Chi Tik Biryn","foodCategoryID":"17","inPrice":"11.45","outPrice":"9.95"},
+	{"foodID":"168","foodDescription":"Chicken Biriyani","outDescrip":"Chi Biriyani","foodCategoryID":"17","inPrice":"10.25","outPrice":"8.75"},
+	{"foodID":"169","foodDescription":"Lamb Biriyani","outDescrip":"Lamb Biriyani","foodCategoryID":"17","inPrice":"10.25","outPrice":"8.75"},
+	{"foodID":"170","foodDescription":"King Prawn Biriyani","outDescrip":"Kng Pro Biri","foodCategoryID":"17","inPrice":"14.45","outPrice":"13.45"},
+	{"foodID":"171","foodDescription":"Prawn Biriyani","outDescrip":"Pro Biriyani","foodCategoryID":"17","inPrice":"11.45","outPrice":"8.75"},
+	{"foodID":"172","foodDescription":"Vegetable Biriyani","outDescrip":"Veg Biriyani","foodCategoryID":"17","inPrice":"8.45","outPrice":"7.45"},
+	{"foodID":"172.11","foodDescription":"Keema Peas Biriyani","outDescrip":"Keema Pea Biri","foodCategoryID":"17","inPrice":"9.25","outPrice":"9.25"},
+	//Special Pilaw
+	{"foodID":"173","foodDescription":"Special Chicken Pilaw","outDescrip":"Spec Chi Pilaw","foodCategoryID":"18","inPrice":"10.45","outPrice":"9.25"},	
+	{"foodID":"174","foodDescription":"Special Lamb Pilaw","outDescrip":"Spec Lam Pil","foodCategoryID":"18","inPrice":"10.45","outPrice":"9.25"},		
+	{"foodID":"175","foodDescription":"Special Prawn Pilaw","outDescrip":"Spec Pro Pilaw","foodCategoryID":"18","inPrice":"11.45","outPrice":"9.45"},
+	{"foodID":"176","foodDescription":"Special King Prawn Pilaw","outDescrip":"Spe Kg Pro Pil","foodCategoryID":"18","inPrice":"14.25","outPrice":"13.75"},
+	//English
+	{"foodID":"173.1","foodDescription":"Omelette and Chips","outDescrip":"Omelette And Chips","foodCategoryID":"18","inPrice":"7.45","outPrice":"6.25"},	
+	{"foodID":"173.2","foodDescription":"Prawn Omelette and Chips","outDescrip":"Pro Omlet And Chips","foodCategoryID":"18","inPrice":"8.45","outPrice":"7.25"},	
+	{"foodID":"173.3","foodDescription":"Mushroom Omelette and Chips","outDescrip":"Mush Omlet And Chips","foodCategoryID":"18","inPrice":"7.95","outPrice":"6.95"},	
+	//Vegetable Sides
+	{"foodID":"189.1","foodDescription":"Veg Korma, Main","outDescrip":"Veg Korma Main","foodCategoryID":"5","inPrice":"6.45","outPrice":"6.95"},
+	{"foodID":"189.2","foodDescription":"Veg Korma, Side","outDescrip":"Veg Korma","foodCategoryID":"19","inPrice":"4.15","outPrice":"3.95"},
+	{"foodID":"189","foodDescription":"Aloo Gobi","outDescrip":"Aloo Gobi","foodCategoryID":"19","inPrice":"4.15","outPrice":"3.95"},
+	{"foodID":"184","foodDescription":"Begun Bhaji","outDescrip":"Begun Bhaji","foodCategoryID":"19","inPrice":"4.15","outPrice":"3.95"},
+	{"foodID":"180","foodDescription":"Bombay Aloo","outDescrip":"Bombay Aloo","foodCategoryID":"19,25","inPrice":"4.15","outPrice":"3.95"},
+	{"foodID":"191","foodDescription":"Bhindi Bhaji","outDescrip":"Bhindi Bhaji","foodCategoryID":"19","inPrice":"4.35","outPrice":"4.25"},
+	{"foodID":"182","foodDescription":"Cauliflower Bhaji","outDescrip":"Cauli Bhaji","foodCategoryID":"19","inPrice":"4.15","outPrice":"3.95"},
+	{"foodID":"185","foodDescription":"Chana Masala","outDescrip":"Chana Masala","foodCategoryID":"19","inPrice":"4.15","outPrice":"3.95"},
+	{"foodID":"183","foodDescription":"Dahl Tarka","outDescrip":"Dahl Tarka","foodCategoryID":"19","inPrice":"4.15","outPrice":"3.95"},
+	{"foodID":"191.1","foodDescription":"Fried Okra","outDescrip":"Fried Okra","foodCategoryID":"19","inPrice":"4.35","outPrice":"3.95"},
+	{"foodID":"177.1","foodDescription":"Methi Aloo","outDescrip":"Methi Aloo","foodCategoryID":"19","inPrice":"4.15","outPrice":"3.95"},
+	{"foodID":"177","foodDescription":"Mixed Vegetable Curry","outDescrip":"Mix Veg Curry","foodCategoryID":"19","inPrice":"4.15","outPrice":"3.95"},
+	{"foodID":"178","foodDescription":"Mixed Vegetable Dry","outDescrip":"Mix Veg Dry","foodCategoryID":"19","inPrice":"4.15","outPrice":"3.95"},
+	{"foodID":"190","foodDescription":"Motor Paneer","outDescrip":"Moto Paneer","foodCategoryID":"19","inPrice":"4.35","outPrice":"4.25"},
+	{"foodID":"179","foodDescription":"Mushroom Bhaji","outDescrip":"Mush Bhaji","foodCategoryID":"19","inPrice":"4.15","outPrice":"3.95"},
+	{"foodID":"187","foodDescription":"Onion Bhaji","outDescrip":"Onion Bhaji","foodCategoryID":"19,25","inPrice":"3.95","outPrice":"3.95","cookingTime":"5","chef":"Side"},
+	{"foodID":"181","foodDescription":"Sag Aloo","outDescrip":"Sag Aloo","foodCategoryID":"19,25","inPrice":"4.15","outPrice":"3.95"},
+	{"foodID":"186","foodDescription":"Sag Bhaji","outDescrip":"Sag Bhaji","foodCategoryID":"19","inPrice":"4.15","outPrice":"3.95"},
+	{"foodID":"188","foodDescription":"Sag Paneer","outDescrip":"Sag Paneer","foodCategoryID":"19","inPrice":"4.15","outPrice":"4.25"},
+	//Rice and sundries
+	{"foodID":"193","foodDescription":"Boiled Rice","outDescrip":"R","foodCategoryID":"20,25","inPrice":"2.55","outPrice":"2.50","chef":"Precooked","cookingTime":"1"},
+	{"foodID":"192","foodDescription":"Pilaw Rice","outDescrip":"PR","foodCategoryID":"20,25","inPrice":"2.95","outPrice":"2.80","chef":"Precooked","cookingTime":"1"},
+	{"foodID":"194","foodDescription":"Special Rice","outDescrip":"SFR","foodCategoryID":"20,25","inPrice":"3.45","outPrice":"3.45"},
+	{"foodID":"195","foodDescription":"Mushroom Rice","outDescrip":"MR","foodCategoryID":"20,25","inPrice":"3.75","outPrice":"3.45"},
+	{"foodID":"194.1","foodDescription":"Egg Rice","outDescrip":"Egg Rice","foodCategoryID":"20,25","inPrice":"3.45","outPrice":"3.45"},	
+	{"foodID":"196.1","foodDescription":"Keema Rice","outDescrip":"Keema Rice","foodCategoryID":"20","inPrice":"3.45","outPrice":"3.45"},
+	{"foodID":"196.12","foodDescription":"Keema Peas Rice","outDescrip":"Keema Pea Rice","foodCategoryID":"20","inPrice":"3.65","outPrice":"3.65"},
+	{"foodID":"196.13","foodDescription":"Peas Rice","outDescrip":"Peas Rice","foodCategoryID":"20","inPrice":"3.65","outPrice":"3.65"},
+	{"foodID":"196.14","foodDescription":"Vegetable Rice","outDescrip":"Veg Rice","foodCategoryID":"20","inPrice":"3.65","outPrice":"3.65"},
+	{"foodID":"196","foodDescription":"Lemon Rice","outDescrip":"LR","foodCategoryID":"20","inPrice":"3.45","outPrice":"3.45"},
+	{"foodID":"197","foodDescription":"Garlic Rice","outDescrip":"GR","foodCategoryID":"20","inPrice":"3.45","outPrice":"3.45"},
+	{"foodID":"198","foodDescription":"Coconut Rice","outDescrip":"Coco Rice","foodCategoryID":"20","inPrice":"3.45","outPrice":"3.45"},
+	{"foodID":"199","foodDescription":"Cucumber Raita","outDescrip":"Cucumber Raita","foodCategoryID":"20","inPrice":"2.45","outPrice":"2.15"},
+	{"foodID":"199.1","foodDescription":"Onion Raita","outDescrip":"Onion Raita","foodCategoryID":"20","inPrice":"2.45","outPrice":"2.15"},
+	{"foodID":"199.2","foodDescription":"Plain Raita","outDescrip":"Raita","foodCategoryID":"20","inPrice":"2.45","outPrice":"2.15"},
+	{"foodID":"200","foodDescription":"Chips","outDescrip":"Chips","foodCategoryID":"20","inPrice":"2.30","outPrice":"2.20"},
+	//Naan	
+	{"foodID":"201","foodDescription":"Naan","outDescrip":"N","foodCategoryID":"21,25","inPrice":"2.40","outPrice":"2.20"},
+	{"foodID":"204","foodDescription":"Peshwari Naan","outDescrip":"PN","foodCategoryID":"21,25","inPrice":"2.95","outPrice":"2.90"},
+	{"foodID":"205","foodDescription":"Garlic Naan","outDescrip":"GN","foodCategoryID":"21","inPrice":"2.95","outPrice":"2.90"},
+	{"foodID":"202","foodDescription":"Vegetable Naan","outDescrip":"Veg N","foodCategoryID":"21","inPrice":"2.95","outPrice":"2.90"},	
+	{"foodID":"202.1","foodDescription":"Chilli Naan","outDescrip":"Chili N","foodCategoryID":"21","inPrice":"2.95","outPrice":"2.90"},     
+	{"foodID":"202.2","foodDescription":"Cheese Naan","outDescrip":"Cheese N","foodCategoryID":"21","inPrice":"3.45","outPrice":"2.90"},
+	{"foodID":"203","foodDescription":"Keema Naan","outDescrip":"KN","foodCategoryID":"21","inPrice":"3.45","outPrice":"3.20"},
+	{"foodID":"206","foodDescription":"Paratha","outDescrip":"Paratha","foodCategoryID":"21","inPrice":"2.70","outPrice":"2.50"},
+	{"foodID":"207","foodDescription":"Vegetable Paratha","outDescrip":"Veg Paratha","foodCategoryID":"21","inPrice":"2.95","outPrice":"2.90"},
+	{"foodID":"208","foodDescription":"Keema Paratha","outDescrip":"Keema Paratha","foodCategoryID":"21","inPrice":"3.45","outPrice":"3.20"},
+	{"foodID":"209","foodDescription":"Puri","outDescrip":"Puri","foodCategoryID":"21","inPrice":"1.60","outPrice":"1.45"},
+	{"foodID":"210","foodDescription":"Chapati","outDescrip":"Chapati","foodCategoryID":"21","inPrice":"1.60","outPrice":"1.45"},
+	{"foodID":"210.1","foodDescription":"Tandoori Roti","outDescrip":"Tand Roti","foodCategoryID":"21","inPrice":"2.40","outPrice":"2.40"},
+	//Popdoms
+	{"foodID":"211","foodDescription":"Plain Popadom","outDescrip":"PD","foodCategoryID":"22,25","inPrice":"0.60","outPrice":"0.60"},
+	{"foodID":"212","foodDescription":"Spicey Popadom","outDescrip":"SPD","foodCategoryID":"22","inPrice":"0.60","outPrice":"0.60"},
+	{"foodID":"213","foodDescription":"Mint Sauce","outDescrip":"M/S","foodCategoryID":"22,25","inPrice":"0.60","outPrice":"0.60"},
+	{"foodID":"214","foodDescription":"Lime and Pickle","outDescrip":"L/P","foodCategoryID":"22,25","inPrice":"0.60","outPrice":"0.60"},
+	{"foodID":"215","foodDescription":"Mango Chutney","outDescrip":"M/C","foodCategoryID":"22,25","inPrice":"0.60","outPrice":"0.60"},
+	{"foodID":"216","foodDescription":"Onion Salad","outDescrip":"O/S","foodCategoryID":"22,25","inPrice":"0.60","outPrice":"0.60"},
+	{"foodID":"217","foodDescription":"Lettuce Salad","outDescrip":"Lettuce Salad","foodCategoryID":"22","inPrice":"0.60","outPrice":"0.60"},
+	//Takeaway Drinks
+	{"foodID":"225","foodDescription":"Cobra","outDescrip":"Cobra","foodCategoryID":"23","inPrice":"5.25","outPrice":"5.25"},
+	{"foodID":"226","foodDescription":"Kingfisher","outDescrip":"Kingfisher","foodCategoryID":"23","inPrice":"2.95","outPrice":"2.95"},
+	{"foodID":"227","foodDescription":"Cider","outDescrip":"Cider","foodCategoryID":"23","inPrice":"2.50","outPrice":"2.50"},
+	{"foodID":"228","foodDescription":"Gl White Wine","outDescrip":"Gl White Wine","foodCategoryID":"23","inPrice":"3.25","outPrice":"3.25"},
+	{"foodID":"229","foodDescription":"Gl Red Wine","outDescrip":"Gl Red Wine","foodCategoryID":"23","inPrice":"3.25","outPrice":"3.25"},
+	{"foodID":"230","foodDescription":"Lrg Gl White Wine","outDescrip":"Lrg Gl White Wine","foodCategoryID":"23","inPrice":"5.50","outPrice":"5.50"},
+	{"foodID":"231","foodDescription":"Lrg Gl Red Wine","outDescrip":"Lrg Gl Red Wine","foodCategoryID":"23","inPrice":"5.50","outPrice":"5.50"},
+	{"foodID":"231.1","foodDescription":"Spirit 2.95 and Mixer","outDescrip":"Spirit and Mixer","foodCategoryID":"23","inPrice":"4.35","outPrice":"4.35"},
+	{"foodID":"231.21","foodDescription":"Spirit 2.95","outDescrip":"Spirit","foodCategoryID":"23","inPrice":"2.95","outPrice":"2.95"},
+	{"foodID":"231.2","foodDescription":"Spirit 3.25","outDescrip":"Spirit","foodCategoryID":"23","inPrice":"3.25","outPrice":"3.25"},
+	{"foodID":"231.4","foodDescription":"Spirit 3.50","outDescrip":"Spirit","foodCategoryID":"23","inPrice":"3.50","outPrice":"3.50"},
+	{"foodID":"231.5","foodDescription":"Spirit 3.75","outDescrip":"Spirit","foodCategoryID":"23","inPrice":"3.75","outPrice":"3.75"},
+	{"foodID":"231.3","foodDescription":"Mixer","outDescrip":"Mixer","foodCategoryID":"23","inPrice":"1.40","outPrice":"1.40"},
+	{"foodID":"231.212","foodDescription":"Liqueur 2.95","outDescrip":"Liqueur","foodCategoryID":"23","inPrice":"2.95","outPrice":"2.95"},
+	{"foodID":"231.211","foodDescription":"Liqueur 3.25","outDescrip":"Liqueur","foodCategoryID":"23","inPrice":"3.25","outPrice":"3.25"},
+	{"foodID":"232","foodDescription":"Coke","outDescrip":"Coke","foodCategoryID":"23","inPrice":"1.75","outPrice":"1.75"},
+	{"foodID":"233","foodDescription":"Diet Coke","outDescrip":"Diet Coke","foodCategoryID":"23","inPrice":"1.75","outPrice":"1.75"},
+	{"foodID":"234","foodDescription":"Lemonade","outDescrip":"Lemonade","foodCategoryID":"23","inPrice":"1.75","outPrice":"1.75"},
+	{"foodID":"234.1","foodDescription":"J20","outDescrip":"J20","foodCategoryID":"23","inPrice":"2.50","outPrice":"2.50"},
+	{"foodID":"235","foodDescription":"Perrier Water","outDescrip":"Perrier Water","foodCategoryID":"23","inPrice":"1.75","outPrice":"1.75"},
+	{"foodID":"235.1","foodDescription":"Sm Mineral Water","outDescrip":"Sml Min Water","foodCategoryID":"23","inPrice":"1.75","outPrice":"1.75"},
+	{"foodID":"236","foodDescription":"Orange Juice","outDescrip":"Orange Juice","foodCategoryID":"23","inPrice":"1.75","outPrice":"1.75"},
+	{"foodID":"237","foodDescription":"Apple Juice","outDescrip":"Apple Juice","foodCategoryID":"23","inPrice":"1.75","outPrice":"1.75"},
+	{"foodID":"238","foodDescription":"Mango Juice","outDescrip":"Mango Juice","foodCategoryID":"23","inPrice":"2.15","outPrice":"2.15"},
+	{"foodID":"239","foodDescription":"Bt Perrier Water","outDescrip":"Bt Perrier Water","foodCategoryID":"23","inPrice":"3.25","outPrice":"3.25"},
+	{"foodID":"240","foodDescription":"Bt Mineral Water","outDescrip":"Bt Min Water","foodCategoryID":"23","inPrice":"3.25","outPrice":"3.25"},
+	{"foodID":"241","foodDescription":"Lassi","outDescrip":"Lassi","foodCategoryID":"23","inPrice":"2.50","outPrice":"2.50"},
+	{"foodID":"242","foodDescription":"Mango Lassi","outDescrip":"Mango Lasso","foodCategoryID":"23","inPrice":"2.90","outPrice":"2.90"},
+	{"foodID":"243","foodDescription":"Bt House White","outDescrip":"Btl House White","foodCategoryID":"23","inPrice":"11.95","outPrice":"11.95"},
+	{"foodID":"243.11","foodDescription":"Bt House Red","outDescrip":"Btl House Red","foodCategoryID":"23","inPrice":"11.95","outPrice":"11.95"},
+	{"foodID":"243.1112","foodDescription":"Bt House Rose","outDescrip":"Btl House Rose","foodCategoryID":"23","inPrice":"15.95","outPrice":"15.95"},
+	{"foodID":"243.1113","foodDescription":"Bt Mateus Rose","outDescrip":"Btl Mateus Rose","foodCategoryID":"23","inPrice":"15.95","outPrice":"15.95"},
+	{"foodID":"243.1114","foodDescription":"Sm Bt House Rose","outDescrip":"Sm Bt House Rose","foodCategoryID":"23","inPrice":"3.95","outPrice":"3.95"},
+	{"foodID":"243.121","foodDescription":"Sm Bt Chardonnay 187ml","outDescrip":"Sm Bt Chardonnay 187ml","foodCategoryID":"23","inPrice":"3.95","outPrice":"3.95"},
+	{"foodID":"243.122","foodDescription":"Sm Bt Sauvignon Blanc 187ml","outDescrip":"Sm Bt Sauvignon Blanc 187ml","foodCategoryID":"23","inPrice":"3.95","outPrice":"3.95"},
+	{"foodID":"243.123","foodDescription":"Sm Bt Pinot Grigio 187ml","outDescrip":"Sm Bt Pinot Grigo 187ml","foodCategoryID":"23","inPrice":"3.95","outPrice":"3.95"},
+	{"foodID":"243.124","foodDescription":"Sm Bt Hse Rose 187ml","outDescrip":"Sm Bt Hse Rose 187ml","foodCategoryID":"23","inPrice":"3.95","outPrice":"3.95"},
+	{"foodID":"243.125","foodDescription":"Sm Bt Merlot 187ml","outDescrip":"Sm Bt Merlot 187ml","foodCategoryID":"23","inPrice":"3.95","outPrice":"3.95"},
+	{"foodID":"243.126","foodDescription":"Sm Bt Rioja 187ml","outDescrip":"Sm Bt Rioja 187ml","foodCategoryID":"23","inPrice":"3.95","outPrice":"3.95"},
+	{"foodID":"243.127","foodDescription":"Sm Bt Shiraz 187ml","outDescrip":"Sm Bt Shiraz 187ml","foodCategoryID":"23","inPrice":"3.95","outPrice":"3.95"},
+        {"foodID":"243.71","foodDescription":"Bt Chardonnay","outDescrip":"Btl Chardonnay","foodCategoryID":"23","inPrice":"15.95","outPrice":"15.95"},
+        {"foodID":"243.31","foodDescription":"Bt Sauvig Blanc","outDescrip":"Btl Savig Blanc","foodCategoryID":"23","inPrice":"15.95","outPrice":"15.95"},
+        {"foodID":"243.61","foodDescription":"Bt Pinot Grigio","outDescrip":"Btl Pinot Grigio","foodCategoryID":"23","inPrice":"16.95","outPrice":"16.95"},
+        {"foodID":"243.81","foodDescription":"Bt Chenin Blanc","outDescrip":"Btl Chenin Blanc","foodCategoryID":"23","inPrice":"15.95","outPrice":"15.95"},
+        {"foodID":"243.41","foodDescription":"Bt Sauvig Blanc NZ","outDescrip":"Btl Savig Blanc NZ","foodCategoryID":"23","inPrice":"19.95","outPrice":"19.95"},
+        {"foodID":"245","foodDescription":"Bt White Chablis","outDescrip":"Btl Chablis","foodCategoryID":"23","inPrice":"20.95","outPrice":"20.95"},
+	{"foodID":"243.2","foodDescription":"Bt Red Merlot","outDescrip":"Btl Red Merlot","foodCategoryID":"23","inPrice":"15.95","outPrice":"15.95"},
+	{"foodID":"244","foodDescription":"Bt Red Malbec","outDescrip":"Btl Malbec","foodCategoryID":"23","inPrice":"15.95","outPrice":"15.95"},
+	{"foodID":"244.1","foodDescription":"Bt Red Pinotage","outDescrip":"Btl Pinotage","foodCategoryID":"23","inPrice":"15.95","outPrice":"15.95"},
+	{"foodID":"243.1","foodDescription":"Bt Red Rioja","outDescrip":"Btl Red Rioja","foodCategoryID":"23","inPrice":"15.95","outPrice":"15.95"},
+	{"foodID":"246","foodDescription":"Bt Red Chianti","outDescrip":"Btl Chablis","foodCategoryID":"23","inPrice":"15.95","outPrice":"15.95"},
+	{"foodID":"246.1","foodDescription":"Bt Red Shiraz","outDescrip":"Btl Shiraz","foodCategoryID":"23","inPrice":"15.95","outPrice":"15.95"},
+	{"foodID":"246.2","foodDescription":"Bt Red Chateauneuf Du Pape","outDescrip":"Btl Chateauneuf Du Pape","foodCategoryID":"23","inPrice":"24.95","outPrice":"24.95"},
+	{"foodID":"247","foodDescription":"Bt Prosecco","outDescrip":"Bt Prosecco","foodCategoryID":"23","inPrice":"19.95","outPrice":"19.95"},
+	//Desserts - should be inhouse only
+	{"foodID":"300","foodDescription":"Kulfi","foodCategoryID":"30","inPrice":"2.95"},
+	{"foodID":"301","foodDescription":"Orange Suprise","foodCategoryID":"30","inPrice":"3.60"},
+	{"foodID":"302","foodDescription":"Lemon Suprise","foodCategoryID":"30","inPrice":"3.60"},
+	{"foodID":"303","foodDescription":"Mela Menthe","foodCategoryID":"30","inPrice":"3.55"},
+	{"foodID":"303.1","foodDescription":"Fantastica","foodCategoryID":"30","inPrice":"4.20"},
+	{"foodID":"303.11","foodDescription":"Ferrero Rocher","foodCategoryID":"30","inPrice":"4.95"},
+	{"foodID":"303.3","foodDescription":"Chocolate Mousse","foodCategoryID":"30","inPrice":"4.65"},
+	{"foodID":"303.31","foodDescription":"Coconut Supreme","foodCategoryID":"30","inPrice":"4.20"},
+	{"foodID":"303.4","foodDescription":"Vanilla Fudge","foodCategoryID":"30","inPrice":"4.45"},
+	{"foodID":"304","foodDescription":"Mouchak","foodCategoryID":"30","inPrice":"4.95"},
+	{"foodID":"305","foodDescription":"Pineapple","foodCategoryID":"30","inPrice":"2.70"},
+	{"foodID":"303.2","foodDescription":"Punky","foodCategoryID":"30","inPrice":"3.60"},
+	{"foodID":"306","foodDescription":"Lychees","foodCategoryID":"30","inPrice":"2.70"},
+	//To add more here
+	{"foodID":"315","foodDescription":"Coffee","foodCategoryID":"30","inPrice":"2.10"},
+	{"foodID":"315.1","foodDescription":"Irish Coffee","foodCategoryID":"30","inPrice":"4.25"},
+	{"foodID":"316","foodDescription":"Tea","foodCategoryID":"30","inPrice":"1.95"},
+	{"foodID":"317","foodDescription":"Cappuccino","foodCategoryID":"30","inPrice":"2.95"},
+	{"foodID":"318","foodDescription":"Mochaccino","foodCategoryID":"30","inPrice":"2.55"},
+	{"foodID":"319","foodDescription":"Espresso","foodCategoryID":"30","inPrice":"1.95"},
+	{"foodID":"320","foodDescription":"Large Espresso","foodCategoryID":"30","inPrice":"2.45"},
+	{"foodID":"321","foodDescription":"Latte","foodCategoryID":"30","inPrice":"2.95"},
+	{"foodID":"322","foodDescription":"Americano","foodCategoryID":"30","inPrice":"1.95"},
+	{"foodID":"323","foodDescription":"Herbal Tea","foodCategoryID":"30","inPrice":"1.95"},
+	{"foodID":"324","foodDescription":"Hot Chocolate","foodCategoryID":"30","inPrice":"3.15"},
+	//{"foodID":"322","foodDescription":"","foodCategoryID":"30","inPrice":"."},
+	//Misc entries
+	//{"foodID":"219","foodDescription":"Add Misc Food Entry","outDescrip":"","foodCategoryID":"24"},
+	//{"foodID":"220","foodDescription":"Add Misc Note","outDescrip":"","foodCategoryID":"24"},
+	//Sauce items
+	{"foodID":"221.1","foodDescription":"Korma Sauce","outDescrip":"Korma Sauce","foodCategoryID":"19","inPrice":"4.15","outPrice":"3.95"},
+	{"foodID":"221","foodDescription":"Masala Sauce","outDescrip":"Masala Sauce","foodCategoryID":"19","inPrice":"4.15","outPrice":"3.95"},
+	{"foodID":"223","foodDescription":"Curry Sauce","outDescrip":"Curry Sauce","foodCategoryID":"19","inPrice":"4.15","outPrice":"3.95"},
+	{"foodID":"221.2","foodDescription":"Madras Sauce","outDescrip":"Madras Sauce","foodCategoryID":"19","inPrice":"4.15","outPrice":"3.95"},
+	{"foodID":"221.3","foodDescription":"Vindaloo Sauce","outDescrip":"Vindaloo Sauce","foodCategoryID":"19","inPrice":"4.15","outPrice":"3.95"},
+	{"foodID":"221.4","foodDescription":"Dansak Sauce","outDescrip":"Dansak Sauce","foodCategoryID":"19","inPrice":"4.15","outPrice":"3.95"},
+	//Children's meals OR English
+	{"foodID":"176.1","foodDescription":"Kids Tikka w Chips","outDescrip":"Kids Chik Tik and Chips","foodCategoryID":"29","inPrice":"6.25","outPrice":"6.25"},
+	{"foodID":"176.11","foodDescription":"Kids Tikka w PR","outDescrip":"Kids Chik Tik and PR","foodCategoryID":"29","inPrice":"6.25","outPrice":"6.25"},
+	{"foodID":"176.2","foodDescription":"Kids CTM w Chips","outDescrip":"Kids CTM and Chips","foodCategoryID":"29","inPrice":"7.25","outPrice":"7.25"},
+	{"foodID":"176.21","foodDescription":"Kids CTM w PR","outDescrip":"Kids CTM and PR","foodCategoryID":"29","inPrice":"7.25","outPrice":"7.25"},
+	{"foodID":"176.3","foodDescription":"Kids Chicken Korma w Pilaw Rice","outDescrip":"Kids Chick Korma and PR","foodCategoryID":"29","inPrice":"6.25","outPrice":"6.25"},
+	{"foodID":"176.4","foodDescription":"Kids Mushroom Omelette w Chips","outDescrip":"Kids Mush Omlette and Chips","foodCategoryID":"29","inPrice":"6.25","outPrice":"6.25"},
+	{"foodID":"176.5","foodDescription":"Kids Prawn Omelette w Chips","outDescrip":"Kids Praw Omlette and Chips","foodCategoryID":"29","inPrice":"6.95","outPrice":"6.95"}
+];
+
+//Food categories are also, for time being, be ordering of the display
+var foodCategories = [
+	{"foodCategoryID":"25","foodCategoryName":"POPULAR ITEMS"},
+	{"foodCategoryID":"3","foodCategoryName":"STARTERS"},
+	{"foodCategoryID":"4","foodCategoryName":"TANDOORI DISHES","cookingTime":"15","chef":"Tandoori"},
+	{"foodCategoryID":"5","foodCategoryName":"HOUSE SPEC","cookingTime":"5","chef":"Head"},
+	{"foodCategoryID":"7","foodCategoryName":"DANSAK OR PATHIA","cookingTime":"5","chef":"Side"},
+	//{"foodCategoryID":"8","foodCategoryName":"PATHIA","cookingTime":"5"},
+	{"foodCategoryID":"9","foodCategoryName":"CHICKEN","cookingTime":"5","chef":"Head"},
+        {"foodCategoryID":"10","foodCategoryName":"LAMB OR DUCK","cookingTime":"5","chef":"Head"},
+        {"foodCategoryID":"11","foodCategoryName":"FISH","cookingTime":"5","chef":"Head"},
+        {"foodCategoryID":"12","foodCategoryName":"BALTI CURRIES","cookingTime":"5","chef":"Head"},
+        {"foodCategoryID":"13","foodCategoryName":"BALTI SPEC","cookingTime":"5","chef":"Head"},
+        {"foodCategoryID":"14","foodCategoryName":"BALTI JAL","cookingTime":"5","chef":"Head"},
+        {"foodCategoryID":"15","foodCategoryName":"BALTI TIK MAS OR PAS","cookingTime":"5","chef":"Head"},
+        {"foodCategoryID":"19.1","foodCategoryName":"BALTI VEG","cookingTime":"5","chef":"Head"},
+	{"foodCategoryID":"17","foodCategoryName":"BIRIYANI","cookingTime":"5","chef":"Side"},
+	{"foodCategoryID":"18","foodCategoryName":"SPEC PIL OR ENGLISH","cookingTime":"5","chef":"Side"},	
+	{"foodCategoryID":"19","foodCategoryName":"VEGETABLE SIDE","cookingTime":"5","chef":"Head"},
+	{"foodCategoryID":"20","foodCategoryName":"RICE","cookingTime":"3.5","chef":"Side"},
+	{"foodCategoryID":"21","foodCategoryName":"BREADS","cookingTime":"6","chef":"Tandoori"},
+	{"foodCategoryID":"22","foodCategoryName":"POPADOMS","cookingTime":"1","chef":"Precooked"},
+	{"foodCategoryID":"29","foodCategoryName":"CHILDREN OR ENGLISH","cookingTime":"5","chef":"Head"},
+	{"foodCategoryID":"23","foodCategoryName":"DRINKS","cookingTime":"2"},
+	{"foodCategoryID":"30","foodCategoryName":"DESSERTS","cookingTime":"5"},
+//Misc item Sauces?
+	//{"foodCategoryID":"27","foodCategoryName":"SAUCES"},
+	{"foodCategoryID":"24","foodCategoryName":"MISC ITEM"},
+	{"foodCategoryID":"26","foodCategoryName":"ORDER NOTE"}
+//	{"foodCategoryID":"28","foodCategoryName":"DISCOUNT"} //Havn't implemented yet
+];
+
+
+//Delivery time, to make more accurate in the future
+//Loop through and get categories
+$(document).ready(function(){
+	refreshFoodCategories();
+});
+
+function refreshFoodCategories(){
+	var categoryHeaders = '</tr><tr width=100% style="height:5px" align=center><td colspan=100% bgcolor=#20B2AA><b><u>MENU SECTIONS</u></b></td></tr>';
+    var breakCounter = 0; 
+     
+	 categoryHeaders += '<tr>';
+     $.each(foodCategories, function(idx, obj) {
+	 categoryHeaders += '<th bgcolor=#3366FF';
+	 categoryHeaders += ' foodCategoryID=' + obj.foodCategoryID + '>' + obj.foodCategoryName +'</th>';
+        breakCounter++;
+        if ((breakCounter%6)==0) {
+           categoryHeaders += '</tr><tr>';
+        }
+     });
+     categoryHeaders += '</tr>';
+     $('.foodCategory').html(categoryHeaders);	 
+}
+
+//Populate food selections on click, filter by category
+$(document).ready(function(){
+	 $(".foodCategory").on('click',"tr th",function(){
+        var foodCategoryOfSelectedCell = $(this).attr('foodCategoryID');
+		//Make all have blue background
+		$(".foodCategory tr th").css("background-color", '#3366FF');
+		//Except the selected one
+		$(this).css("background-color", '#FF4500');
+		refreshFoodSelections(foodCategoryOfSelectedCell);
+    });
+});
+
+//Populates the food selections
+function refreshFoodSelections(foodCategory){
+        var breakCounter = 0;
+				
+		//If misc item selection, present input for entering the new item
+		if(foodCategory==24){
+			var miscEntry = '';
+			miscEntry += '<tr>';
+			miscEntry += '<td width=10% align=center>Food Item Description</td>'
+			//To only show replace if an item has been clicked, otherwise enter only, also to adjust colspan above
+
+			miscEntry += '<td align=left colspan=1>&nbsp;&nbsp;&nbsp;&nbsp;<input id="miscItemDescription" size=55 onkeypress="handleMiscItem(event)" placeholder="Enter Description" value="';
+			if (miscDescrip!=''){ //This identifies if an item on the current order is being replaced or not. really not visible but I hope you can read this :)
+				miscEntry += miscDescrip;
+
+			}
+			miscEntry += '" /></td>';
+			if(miscDescrip!=''){
+				miscEntry += '<td bgcolor=#F08080 id="miscItemReplace" align=center colspan=2 rowspan=2 width=15%>Replace <br> Entry</td>';
+		//		miscDescrip = ''; //Reset this
+			}
+
+
+			var rowspan = '';
+			if(miscDescrip!=''){
+				rowspan=2;
+			}else{
+				rowspan=3;
+			} 
+
+			miscEntry += '<td bgcolor=#F08080 id="miscItemEnter" align=center colspan=2 rowspan='+ rowspan +'>New Entry</td>';
+			miscEntry += '</tr>';
+			miscEntry += '<tr>';
+			miscEntry += '<td align=center>Price</td><td align=left>&nbsp;&nbsp;&nbsp;&nbsp;';
+			miscEntry += '<input onkeypress="handleNumbersOnly(event)" id="miscItemPrice" size=6 placeholder="Enter Price" value="';
+			if (miscPricePer1Qty!=''){
+				miscEntry += miscPricePer1Qty;
+				miscPricePer1Qty =''; //Reset this
+			}
+			miscEntry += '" /></td>';
+			miscEntry += '</tr>';
+
+			if(miscDescrip==''){
+			miscEntry += '<tr>';
+			miscEntry += '<td align=center>Category:</td>';
+			miscEntry += '<td>&nbsp;&nbsp;&nbsp;&nbsp;';
+			miscEntry += '<select id="miscItemCategory" >';
+			
+			//Default category
+                        miscEntry += '<option categoryId=default></option>';
+
+			$.each(foodCategories, function(key,value){
+				//Ignore non-food categoriea e.g. POPULAR items
+				switch(value.foodCategoryID){
+					case '25': 
+						break;
+					case '24': 
+						break;
+					case '26': 
+						break;
+					default:
+                        		        miscEntry += '<option categoryId='+value.foodCategoryID+'>' + value.foodCategoryName + '</option>';
+				}
+            		});
+
+			miscEntry += '</select></td>';
+			miscEntry += '</tr>';
+			}
+			miscDescrip = ''; //Reset this
+
+			$('.foodItems').html(miscEntry);
+			return;
+		}
+
+		//If misc note
+		if(foodCategory==26){
+			var miscNote = '';
+			miscNote += '<tr>';
+			miscNote += '<td rowspan="2" align=center width=15%>General Order Note e.g. \'No oil\' or \'No onions\'</td><td rowspan="2">&nbsp;&nbsp;<textarea rows="4" cols="50" id="miscNote" onkeypress="handleOrderNote(event)">';
+			
+			if(orderNote!=''){
+				miscNote += orderNote;
+			}
+			
+			miscNote  += '</textarea>&nbsp;&nbsp;</td><td bgcolor=#F08080 id="miscNoteEnter" align=center width=25%>Enter</td>';
+			miscNote += '</tr>';
+			miscNote += '<tr>';
+			miscNote += '<td bgcolor=#F08080 id="miscNoteCancel" align=center>Remove</td>';
+			miscNote += '</tr>';
+			$('.foodItems').html(miscNote);
+			return;
+		}
+
+		//If applying a discount
+//		if(foodCategory==27){
+//			var miscEntry = '';
+//			miscEntry += '<tr>';
+//			miscEntry += '<td align=center>Discount in % </td><td bgcolor=#F08080 align=center>&nbsp;&nbsp;&nbsp;&nbsp;<input onkeypress="handleNumbersOnly(event)" id="discount" size=5 /></td><td bgcolor=#F08080 align=center>Enter</td><td bgcolor=#F08080 align=center>Cancel</td>';
+//			miscEntry += '</tr>';
+//			$('.foodItems').html(miscEntry);
+//			return;
+//		}
+		
+		//Otherwise must be foodItems to display
+		var foodsSelectable = '<tr>';
+        $.each(food, function(idx, obj) {		
+			//Split by comma
+			var categoryArray = obj.foodCategoryID.split(',');
+			//If in either categories
+				//This is useful for multple categories e.g. for popular items
+			if ($.inArray(foodCategory, categoryArray) > -1) {
+			foodsSelectable += '<td bgcolor="#F08080" align="center"';
+			foodsSelectable += ' foodID=' + obj.foodID + ' foodCategoryID='+obj.foodCategoryID+'><font size="4">' + obj.foodDescription + '</font></td>';
+            
+			breakCounter++;
+            if ((breakCounter%5)==0) {
+               foodsSelectable += '</tr><tr>';
+            }
+          }
+        });
+		
+        foodsSelectable += '</tr>';
+        $('.foodItems').html(foodsSelectable);
+}
+
+//Create order object and display
+var order = [];
+var orderAsObjects = [];
+
+var isStandingCustomer = false;
+var replaceMiscEntry = false;
+
+//Upon food selection or clicking a cell in the food selection table section
+$(document).ready(function(){
+
+    //For selecting the Delete button of the saved orders
+    $(".foodItems").on('click',"tr td tr td",function(event){
+	$(this).effect("highlight",{color: '#FF4500'}, 1000);
+        var key= $(this).attr('orderKey');
+	var kitchenPrintKey = $(this).attr('kitchenPrintKey');
+	//Confirm deletion
+	var result = confirm('Are you sure you want to delete this saved in house order?');
+        if(result!=true){
+	   throw new Error("Order not deleted by user");
+        }
+	//Remove it
+	localStorage.removeItem(key); //Main order saved
+	localStorage.removeItem(key+"_miscItems"); //Any misc items
+	localStorage.removeItem(kitchenPrintKey); //If the item was sent to the kitchen
+	loadOrders();
+	event.stopPropagation();
+    });
+
+	$(".foodItems").on('click',"tr td",function(){
+	
+	//printig our cell info on what is being pressed
+	var idAttribute = $(this).attr('id');
+	var classAttribute = $(this).attr('class');
+
+	if(idAttribute == "miscItemEnter"){
+		$(this).effect("highlight",{color: '#FF4500'}, 1000);
+		addMiscItem();
+		return;	
+	} else if (idAttribute == "miscItemReplace"){
+		$(this).effect("highlight",{color: '#FF4500'}, 1000);
+		replaceMiscEntry = true;
+		addMiscItem();
+		return;
+	} else if (idAttribute == "miscNoteEnter"){
+		addOrderNote();
+		$(this).effect("highlight",{color: '#FF4500'}, 1000);
+		return;	
+	} else if (idAttribute == "miscNoteCancel"){
+		removeOrderNote();
+		$(this).effect("highlight",{color: '#FF4500'}, 1000);
+		return;
+	//This following selector is a bit buggy. To fix ideally.
+	} else if (classAttribute == "displaySavedOrder"){
+        	$(this).effect("highlight",{color: '#FF4500'}, 1000);
+        	var key= $(this).attr('orderKey');
+
+		//Load order and qty
+		orderAsObjects = JSON.parse(localStorage.getItem(key));
+
+		//Load misc items
+		var miscItemsSaved = JSON.parse(localStorage.getItem(key+"_miscItems"));
+		$.each(miscItemsSaved, function(idx, miscFoodObj){
+			//If the misc item exists replace it so we don't have extra duplicate entries
+			var updatedCurrentFood = false;
+			$.each(food, function(idx, foodObj){
+				if(miscFoodObj.foodID==foodObj.foodID){
+					food[idx] = miscFoodObj;	
+					updatedCurrentFood = true;
+				}
+			});
+			if(!updatedCurrentFood){
+				food.push(miscFoodObj);
+			}
+                });
+
+        	var pos1 = key.indexOf("_T")+2;
+        	var pos2 = key.indexOf("_P");
+        	var table = key.substring(pos1,pos2);
+
+        	//Extract the number of people and update the Number of Customers text box
+        	pos1 = key.indexOf("_P")+2;
+        	pos2 = key.indexOf("_TS_");
+        	var numbOfCustomer = key.substring(pos1,pos2);
+
+        	document.getElementById('tableNumber').value = table;
+        	document.getElementById('numbOfCust').value = numbOfCustomer;
+        	refreshOrderList();
+		return;
+	} 
+
+	//Otherwise must be a food selection
+	var foodIDOfSelectedCell = $(this).attr('foodID');
+	var foodCategoryOfSelectedCell = $(this).attr('foodCategoryID');
+	
+	//If initial section - "Select a menu section" - is clicked on
+		//Or if any of the misc sections clicked on
+	if(foodCategoryOfSelectedCell==null){
+		return;
+	}
+
+	//Else it must be a food item that is selection and put into the summary section
+	//order[foodIDOfSelectedCell] = ++order[foodIDOfSelectedCell] || 1;
+	addQtyFoodToOrder(foodIDOfSelectedCell);
+
+	refreshOrderList();
+	$(".foodItems tr td").css("background-color", '#F08080');
+	$(this).css("background-color", '#FF4500');
+    });
+
+    //$(".displaySavedOrder").on("click", function() {
+    //});
+
+});
+
+function addQtyFoodToOrder(foodID){
+	var orderUpdated = false;
+        //Loop through current orders
+        for(var index in orderAsObjects) {
+                //If the foodId exists; extract the qty value
+                if (orderAsObjects[index].foodID == foodID){
+			var currentQty = orderAsObjects[index].qty;
+			if(currentQty == 0.5){
+				orderAsObjects[index].qty = 1;
+			} else {
+                        	orderAsObjects[index].qty++;
+			}
+                        orderUpdated = true;
+                        break;
+                }
+        }
+        if (orderUpdated == false) {
+                var orderElement = {};
+                orderElement.foodID = foodID;
+                orderElement.qty  = 1;
+                orderAsObjects.push(orderElement);
+        }
+}
+
+function getFoodQty(foodID){
+	var qty = 0;
+        for(var index in orderAsObjects) {
+                //If the foodId exists; extract the qty value
+		var ordObj = orderAsObjects[index];
+                if (ordObj.foodID == foodID){
+			qty = ordObj.qty;	
+                }
+        }
+	return qty;
+}
+
+//NB: This doesn't check to see if the foodId already exists with an object
+function addFoodToOrderWithQty(foodID, qty){
+        var orderElement = {};
+        orderElement.foodID = foodID;
+        orderElement.qty  = qty;
+        orderAsObjects.push(orderElement);
+}
+
+function removeQtyFoodFromOrder(foodID){
+        //Loop through current orders
+        for(var index in orderAsObjects) {
+                //If the foodId exists; extract the qty value
+                if (orderAsObjects[index].foodID == foodID){
+                        var currentQty = orderAsObjects[index].qty;
+			if (currentQty > 1){
+				orderAsObjects[index].qty--;
+				break;
+			} else if (currentQty == 1){
+				orderAsObjects[index].qty = 0.5;
+				break;
+			} else if (currentQty == 0.5){
+				orderAsObjects[index].qty = 0;
+				break;
+			} else if (currentQty == 0){
+				delete orderAsObjects[index];
+				break;
+			}
+                }
+        }
+}
+
+function deleteFoodFromOrder(foodID){
+        //Loop through current orders
+        for(var index in orderAsObjects) {
+                //If the foodId exists; extract the qty value
+                if (orderAsObjects[index].foodID == foodID){
+			delete orderAsObjects[index];
+			break;
+                }
+        }
+}
+
+function handleNumbersOnly(evt){
+
+	if(evt.keyCode === 13){
+		addMiscItem();
+	}
+
+  var theEvent = evt || window.event;
+  var key = theEvent.keyCode || theEvent.which;
+  key = String.fromCharCode( key );
+  var regex = /[0-9]|\./;
+  if( !regex.test(key) ) {
+    theEvent.returnValue = false;
+    if(theEvent.preventDefault) theEvent.preventDefault();
+  }
+}
+
+function handleTableNo(evt){
+
+  var theEvent = evt || window.event;
+  var key = theEvent.keyCode || theEvent.which;
+  key = String.fromCharCode( key );
+  var regex = /[0-9]|\./;
+  if( !regex.test(key) ) {
+    theEvent.returnValue = false;
+    if(theEvent.preventDefault) theEvent.preventDefault();
+  }
+}
+
+
+function handleCustNo(evt){
+
+  var theEvent = evt || window.event;
+  var key = theEvent.keyCode || theEvent.which;
+  key = String.fromCharCode( key );
+  var regex = /[0-9]|\./;
+  if( !regex.test(key) ) {
+    theEvent.returnValue = false;
+    if(theEvent.preventDefault) theEvent.preventDefault();
+  }
+}
+
+
+
+var miscDescrip = '';
+var miscPricePer1Qty = '';
+var miscFoodCategoryID = '';
+var miscfoodID='';
+
+//Add/remove/convert to misc order operations
+$(document).ready(function(){
+	$(".order").on('click',"tr td",function(){
+	var foodIDOfSelectedCell = $(this).attr('foodID');
+	var operation = $(this).attr('orderOp');
+	
+	if (operation=="add"){
+		addQtyFoodToOrder(foodIDOfSelectedCell);
+		refreshOrderList();
+	}
+	
+	if (operation=="remove"){
+		removeQtyFoodFromOrder(foodIDOfSelectedCell);
+		refreshOrderList();
+	}
+		
+	if (operation=="convertToMisc"){
+	//change this from replaceMiscEntry variable todo
+		//Get item
+			miscDescrip = $(this).attr('miscDescrip'); //Get description
+			miscPricePer1Qty = $(this).attr('miscPricePer1Qty'); //Get price
+			miscFoodCategoryID = $(this).attr('foodCategoryID'); //Get category ID
+			miscfoodID = $(this).attr('foodID');
+
+			//Show Misc Items menu section
+		//Populate Misc Items
+		
+        var foodCategoryOfSelectedCell = '24'; //Simulate category 'Misc Items' 24 being clicked
+		//Make all have blue background
+		$(".foodCategory tr th").css("background-color", '#3366FF');
+		//Except the selected one
+		//TODO how to select this specific cell
+		//$(this).css("background-color", '#FF4500');
+		
+		refreshFoodSelections(foodCategoryOfSelectedCell);		
+	}	
+	
+    });
+});
+
+//Populates the order summary section
+//Puts the food items of the order in order of starts, main, side, rice, sundries, popdoms 
+function refreshOrderList(){
+        var orderHTMLUpdate = '';
+        var totalQty = 0;
+        var totalPrice = 0;
+				
+		//If miscItem, add into into the food order list; ready to be calculated below
+		//Check if pressed entered button
+		if(miscItemEntered==true){
+			//Check if entered necessary entries
+			if (miscItemDescription != '' && miscItemPrice != ''){
+
+				var foodID = '';
+				var foodID_ToReplace = '';
+		
+
+				var localStorageTempFoodCount = localStorage.getItem("localStorageTempFoodCount");
+				if (localStorageTempFoodCount== null){
+					localStorageTempFoodCount = 1;
+				} else {
+					localStorageTempFoodCount++;
+				}
+	
+				//Replace the entry
+				if(replaceMiscEntry == true){
+					//foodID = miscfoodID;
+					foodID_ToReplace = miscfoodID;
+					//foodID = food.length + 20; 
+					foodID = "miscFoodID_" + localStorageTempFoodCount;
+					miscfoodID = '';
+				} else {
+					//If not a replacement, Add to the food list, if entring a new item
+					//foodID = food.length + 20; 
+					foodID = "miscFoodID_" + localStorageTempFoodCount;
+				}
+
+				localStorage.setItem("localStorageTempFoodCount",localStorageTempFoodCount);
+
+				if(miscFoodCategoryID ==''){ //If not clicked on as a Misc Item, then it isn't to replace an item
+					//Note that miscItemCategoryID should be gained from being selected when a new misc entry is placed
+					//Note that miscFoodCategoryID is gained when an item orders in the summary list is clicked on	
+					miscFoodCategoryID = miscItemCategory + ",24"; //Misc item food category;
+				}else{
+					//Make the replaced FoodCategory a misc one
+					miscFoodCategoryID = miscFoodCategoryID + ",24";
+				}
+				
+				//Add the food item into the menu
+					//Note that the outPrice and inPrice both have the updated miscItem price as it doesn't matter that both are populated
+				food.push({"foodID":foodID,"foodDescription":miscItemDescription,"outDescrip":miscItemDescription,"foodCategoryID":miscFoodCategoryID,"outPrice":miscItemPrice,"inPrice":miscItemPrice});
+
+				if(!replaceMiscEntry){
+					//Then add 1 qty to the order
+					//order[foodID] = ++order[foodID] || 1;
+					addQtyFoodToOrder(foodID);
+				} else {
+					//If replacing the order then take it out
+					var tempQty2 = getFoodQty(foodID_ToReplace);
+					deleteFoodFromOrder(foodID_ToReplace);
+					addFoodToOrderWithQty(foodID,tempQty2);
+				}
+				miscItemDescription = '';
+				miscItemPrice = '';
+				miscFoodCategoryID ='';
+			}
+
+			if(replaceMiscEntry==true){
+				//Reset
+				replaceMiscEntry = false;
+			}
+			
+			//Reset the selection view
+			refreshFoodSelections("24");
+			miscItemEntered=false;//reset this
+		}
+		
+		//The Order list is already ordered by index it seems
+		var startersTitled = false;
+		var mainTitled = false;
+		var childrenTitled = false;
+		var sidesTitled = false;
+		var riceSundriesTitled = false;
+		var popadomsTitled = false;
+		var miscItemTitled = false;
+		var dessertsTitled = false;
+		var drinksTitled = false;
+		
+		//Lists for each section
+		var startersHTML = '';
+		var mainHTML = '';
+		var childrenHTML = '';
+		var sidesHTML = '';
+		var riceSundriesHTML = '';
+		var popadomsHTML = '';
+		var miscItemHTML = '';
+		var dessertsHTML = '';
+		var drinksHTML = '';
+				
+		//Loop though orders
+        //for (var index in order) {
+        for (var index in orderAsObjects) {
+          var foodDesc = '';
+          var foodPrice = 0 ;
+		  var foodCategoryID = 0;
+
+            $.each(food, function(key,value){
+				if (value.foodID==orderAsObjects[index].foodID){
+					foodDesc = value.foodDescription;
+					if(takeoutOrInhouse == 'TAKEOUT'){
+						foodPrice = value.outPrice;
+					} else {
+						//Assumption here it's an in price
+						foodPrice = value.inPrice
+					}
+					
+					//Only take the first token of the food category as there might be multiple e.g. Popular items
+					foodCategoryID = value.foodCategoryID.split(',')[0]; 
+					return;
+				}
+            });
+
+			//var qty = order[index];
+			var ordObj = orderAsObjects[index];  
+			var qty = getFoodQty(ordObj.foodID);
+			var itemPrice = 0;
+			if(qty==0.5){ //If half portion then apply 75% of the price of 1 qty
+				itemPrice = 0.75 * foodPrice;
+			} else {
+				itemPrice = qty * foodPrice ;
+			}
+			
+			var miscItemPricePer1Qty = 0;
+			//For Misc Entries
+			if(qty==0.5){ //If half portion then cater for the 75% of the price of 0.5 qty to make it 100% 
+				miscItemPricePer1Qty = (itemPrice / 75) * 100  ;
+			} else {
+				miscItemPricePer1Qty = itemPrice / qty ;
+			}
+			
+			if (foodCategoryID==3 && !startersTitled){
+				startersHTML += '<tr><td colspan=5 align=center>Starters</td></tr>'
+				startersTitled = true;
+			}
+			
+			if (foodCategoryID==3){
+				startersHTML += addOrderToSummaryList(index, foodCategoryID, qty, itemPrice, foodDesc, miscItemPricePer1Qty);
+			}
+
+			if (foodCategoryID>=4 && foodCategoryID<19 && !mainTitled){
+				mainHTML += '<tr><td colspan=5 align=center>Mains</td></tr>'
+				mainTitled = true;
+			}
+
+			if (foodCategoryID>=4 && foodCategoryID<19){
+				mainHTML += addOrderToSummaryList(index, foodCategoryID, qty, itemPrice, foodDesc, miscItemPricePer1Qty);
+			}
+
+			if (foodCategoryID==29 && !childrenTitled){
+				childrenHTML += '<tr><td colspan=5 align=center>Children Portions</td></tr>'
+				childrenTitled = true;
+			}
+
+			if (foodCategoryID==29){
+				childrenHTML += addOrderToSummaryList(index, foodCategoryID, qty, itemPrice, foodDesc, miscItemPricePer1Qty);
+			}
+
+			if ( (foodCategoryID==19 || foodCategoryID==19.1) && !sidesTitled){
+				sidesHTML += '<tr><td colspan=5 align=center>Side Dishes</td></tr>'
+				sidesTitled = true;
+			}
+
+			if (foodCategoryID==19 || foodCategoryID==19.1){
+				sidesHTML += addOrderToSummaryList(index, foodCategoryID, qty, itemPrice, foodDesc, miscItemPricePer1Qty);
+			}
+			
+			if ((foodCategoryID==20 || foodCategoryID==21) && !riceSundriesTitled){
+				riceSundriesHTML += '<tr><td colspan=5 align=center>Rice & Breads</td></tr>'
+				riceSundriesTitled = true;
+			}
+
+			if (foodCategoryID==20 || foodCategoryID==21){
+				riceSundriesHTML += addOrderToSummaryList(index, foodCategoryID, qty, itemPrice, foodDesc, miscItemPricePer1Qty);
+			}
+			
+			if (foodCategoryID==30 && !dessertsTitled){
+				dessertsHTML += '<tr><td colspan=5 align=center>Desserts</td></tr>'
+				dessertsTitled = true;
+			}
+
+			if (foodCategoryID==30){
+				dessertsHTML += addOrderToSummaryList(index, foodCategoryID, qty, itemPrice, foodDesc, miscItemPricePer1Qty);
+			}
+
+			if (foodCategoryID==23 && !drinksTitled){
+				drinksHTML += '<tr><td colspan=5 align=center>Drinks</td></tr>'
+				drinksTitled = true;
+			}
+			
+			if (foodCategoryID==23){
+				drinksHTML += addOrderToSummaryList(index, foodCategoryID, qty, itemPrice, foodDesc, miscItemPricePer1Qty);
+			}
+
+			if (foodCategoryID==24 && !miscItemTitled){
+				miscItemHTML += '<tr><td colspan=5 align=center>Misc Item</td></tr>'
+				miscItemTitled = true;
+			}
+			
+			if (foodCategoryID==24){
+				miscItemHTML += addOrderToSummaryList(index, foodCategoryID, qty, itemPrice, foodDesc, miscItemPricePer1Qty);
+			}
+
+			if ((foodCategoryID==22 || foodCategoryID==27) && !popadomsTitled){
+				popadomsHTML += '<tr><td colspan=5 align=center>Popadoms</td></tr>'
+				popadomsTitled = true;
+			}
+			
+			if (foodCategoryID==22 || foodCategoryID==27){
+				popadomsHTML += addOrderToSummaryList(index, foodCategoryID, qty, itemPrice, foodDesc, miscItemPricePer1Qty);
+			}
+
+			//Need to put this section in functions to then seperate our the sections?
+			totalPrice += itemPrice;
+			totalQty += qty;
+        }
+
+
+		if(takeoutOrInhouse == 'INHOUSE'){
+			//Add chutney charge
+			//If there is at least one popadome served, charge 50p per customer on the table
+			//Check if popadoms were titled 
+			//if(order[211]>0 || order[212]>0){
+			if(getFoodQty(211)>0 || getFoodQty(212)>0){
+				//Get number of people
+                                numberOfCustOnTable= document.getElementById('numbOfCust').value;
+                		if(numberOfCustOnTable==""){
+                    			//alert("Enter number of customers at the table to determine chutney charge");
+                		} else {
+					var local_chutneys = numberOfCustOnTable*0.5;
+                			popadomsHTML += '<tr><td colspan=3></td><td align=left>Chutneys</td><td colspan=1 align=right>£' + local_chutneys.toFixed(2) + '</td></tr>'
+					totalPrice += local_chutneys;
+				}
+			}
+                }
+
+		
+		orderHTMLUpdate += startersHTML + mainHTML + childrenHTML + sidesHTML + riceSundriesHTML + popadomsHTML + miscItemHTML + dessertsHTML + drinksHTML;
+
+		//If inhouse order, add chutney and service charge
+		if(takeoutOrInhouse == 'INHOUSE'){
+			//Add service charge
+			if (totalPrice > 0) {
+				var local_serviceCharge = totalPrice * 0.1;
+				orderHTMLUpdate += '<tr><td colspan=3></td><td align=right>Service Charge</td><td colspan=1 align=right>£' + local_serviceCharge.toFixed(2) + '</td></tr>'
+				totalPrice += local_serviceCharge;
+			}
+                }
+
+                orderHTMLUpdate += '<tr><td colspan=2 align=right>Total</td><td>' + totalQty + '</td><<td colspan=2 align=right>£' + totalPrice.toFixed(2) + '</td></tr>'
+		
+		if(isStandingCustomer){
+			orderHTMLUpdate = '<tr><td colspan=5 align=left>STANDING ORDER</td></tr>' + orderHTMLUpdate;
+		}
+		
+		if(orderNote!=''){
+			orderHTMLUpdate += '<tr><td colspan=5 align=center><br/>Order Notes: '+ orderNote +'</td></tr>';
+		}
+		
+
+	//If it's an in-house order; save it
+	if(takeoutOrInhouse == 'INHOUSE'){
+		//saveOrder();	
+	}
+
+        $('.order').html(orderHTMLUpdate);
+	$('.order').effect("highlight",{color: '#FF4500'}, 1000);
+
+	//Update the estimate delivery time of the order, for both inhouse and takeouts
+	estimateOrderTimeByAlgorithm();
+	//If a takeout order; display the updated algo time 
+	if(takeoutOrInhouse == 'TAKEOUT'){
+		refreshDeliveryTimes(); //To update the algo estimate time
+		//Following turned off in production
+		//getCurrentChefWaitingTimes(); //Update waiting times //TODO: make the PHP page call the script to check the curent waiting time
+	}
+}
+
+function addOrderToSummaryList(index, foodCategoryID, qty, itemPrice, foodDesc, miscItemPricePer1Qty){
+
+	var html = '';
+	html += '<tr>'
+	html += '<td bgcolor=#F08080 foodID="' +orderAsObjects[index].foodID+ '" orderOp=remove>&nbsp;&nbsp;&#8209&nbsp;&nbsp;</td>';
+	html += '<td bgcolor=#F08080 foodID="' +orderAsObjects[index].foodID+ '" orderOp=add>&nbsp;+&nbsp;<td>' + qty + '</td>'
+	html += '<td bgcolor=#F08080 foodID="' +orderAsObjects[index].foodID+ '" foodCategoryID="'+foodCategoryID+'" orderOp="convertToMisc" miscDescrip="'+foodDesc+'" miscPricePer1Qty="'+miscItemPricePer1Qty+'">' +foodDesc +'</td>';
+	html += '<td align=right>£' +itemPrice.toFixed(2)+ '</td>';
+	html += '</tr>';
+	return html;
+}
+
+function increaseDelTimeMin(){
+     deliveryMinAdjust = deliveryMinAdjust + 5;
+     refreshDeliveryTimes();
+}
+
+function decreaseDelTimeMin(){
+     if(deliveryMinAdjust>-20){   
+     	deliveryMinAdjust = deliveryMinAdjust - 5;
+     }else{
+       alert("Minimum takeout preparation time is 10 minutes"); 
+     }
+
+     refreshDeliveryTimes();
+}
+
+function toggleStandingCustomer(){
+	
+	//Switch the variable
+	if (isStandingCustomer == true){
+		isStandingCustomer = false;
+	} else {
+		isStandingCustomer = true;
+	}
+	
+	//Update the background of the button
+	var bgColour = '';
+	if (isStandingCustomer ==  true){
+		bgColour = "#FF4500";
+	} else {
+		bgColour = "#F08080";
+	}
+	$('#standingCustomer').css("background-color", bgColour);
+	refreshOrderList();
+}
+
+function refreshDeliveryTimes(){
+      var currentDate = new Date();
+      var deliveryDate = new Date();
+      deliveryDate.setMinutes(deliveryDate.getMinutes() + 25 + deliveryMinAdjust);
+   
+     document.getElementById('currentTime').innerHTML = formatAMPM(currentDate);
+     document.getElementById('takeAwaIyCollectionTime').innerHTML = formatAMPM(deliveryDate);
+     document.getElementById("deliveryEstimate").innerHTML = deliveryMinAdjust + 25  + " min";
+
+     document.getElementById("deliveryEstimateAlgo").innerHTML = algoEstimate + " min";
+     document.getElementById("deliveryEstimateHeadChef").innerHTML = headChefEstimate + " min";
+     document.getElementById("deliveryEstimateTandooriChef").innerHTML = tandooriChefEstimate + " min";
+     document.getElementById("deliveryEstimateSideChef").innerHTML = sideChefEstimate + " min";
+     document.getElementById("deliveryEstimatePrecooked").innerHTML = preCookedItemsEstimate + " min";
+
+}
+
+var algoEstimate = 0;
+
+//Estimate breakdown
+var headChefEstimate = 0;
+var sideChefEstimate = 0;
+var tandooriChefEstimate = 0;
+var preCookedItemsEstimate = 0; //Time needed for packing
+
+function estimateOrderTimeByAlgorithm(){
+
+	//Get current waiting time; based on server side calculation
+		//Use websockets or a php page to generate the number and return this
+
+	//Reset
+	algoEstimate = 0
+	headChefEstimate = 0;
+	sideChefEstimate = 0;
+	tandooriChefEstimate = 0;
+	preCookedItemsEstimate = 0; //Time needed for packing
+
+	//Loop through food items in the order
+	for(var orderIdx in orderAsObjects){ 
+
+		var foodChef = null;
+		var foodCookingTime = null;
+
+		//Get the order
+		var orderItem = orderAsObjects[orderIdx];
+
+		//Search the food itme of the order item 
+		for(var foodIdx in food){ 
+
+			var foodItem = food[foodIdx];
+			if (orderItem.foodID == foodItem.foodID){ 	
+
+				//Food item found; so now lookup the chef and the cooking time
+				foodChef = foodItem.chef;
+				foodCookingTime = foodItem.cookingTime;
+
+				//If the food item doesn't have a chef/cooking time; then take the default of the category
+				if(foodChef==null || foodCookingTime==null){
+
+					var foodCategoryId = foodItem.foodCategoryID.split(',')[0]; //Split and take the first time to ignore popular item and misc categories
+					for(var categoryIdx in foodCategories){ 
+
+						var cateogryItem = foodCategories[categoryIdx];
+						if(foodCategoryId == cateogryItem.foodCategoryID){
+							if(foodChef == null){
+								foodChef = cateogryItem.chef;
+							}
+							if(foodCookingTime == null){	
+								foodCookingTime = cateogryItem.cookingTime;
+							}
+						break;
+						}
+					}
+				}
+				break; //Once the food is found; stop searching the food array
+			}
+		}
+
+		foodCookingTime = Number(foodCookingTime);
+
+		//Update the estimate for the chef
+		//If nothing found, default to 10 min & mark as an erro
+		switch(foodChef){
+			case "Head" : 
+				headChefEstimate += foodCookingTime * Math.ceil(orderItem.qty/2); //Cooking time of Order qty doesn't really matter unless > 2
+				break;
+			case "Side" : 
+				sideChefEstimate += foodCookingTime * Math.ceil(orderItem.qty/2);
+				break;
+			case "Tandoori" : 
+				tandooriChefEstimate += foodCookingTime * Math.ceil(orderItem.qty/2);
+				break;
+			case "Precooked" : 
+				preCookedItemsEstimate += foodCookingTime * Math.ceil(orderItem.qty/2);
+				break;
+		}
+	}
+
+	//Extract the category and food estimates cooking times
+
+	//Take the max time to be the ETA time of the order
+	algoEstimate = Math.max(headChefEstimate,sideChefEstimate,tandooriChefEstimate,preCookedItemsEstimate);
+
+}
+
+function formatAMPM(date) {
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? '0'+minutes : minutes;
+  var strTime = hours + ':' + minutes + ' ' + ampm;
+  return strTime;
+}
+
+var takeoutOrInhouse = '';
+
+
+//Gets the current chef waiting times
+function getCurrentChefWaitingTimes(){
+        var jqxhr = $.get("publishWaitingTimes.php", function(data, status) {
+		//TODO:put these into a javascript timestamp
+                //alert("Data: " + data + "\nStatus: " + status);
+		//Form into XML and extract data and put below
+                var parser = new DOMParser();
+		var xmlDoc = parser.parseFromString(data,"text/xml");
+
+	        document.getElementById("waitEstimateHeadChef").innerHTML = xmlDoc.getElementsByTagName("currentHeadChefWaitingTime")[0].childNodes[0].nodeValue + " min";
+	        document.getElementById("waitEstimateTandooriChef").innerHTML = xmlDoc.getElementsByTagName("currentTandooriChefWaitingTime")[0].childNodes[0].nodeValue + " min";
+	        document.getElementById("waitEstimateSideChef").innerHTML = xmlDoc.getElementsByTagName("currentSideChefWaitingTime")[0].childNodes[0].nodeValue + " min";
+	        document.getElementById("waitEstimatePrecooked").innerHTML = xmlDoc.getElementsByTagName("currentPrecookedWaitingTime")[0].childNodes[0].nodeValue + " min";
+
+		//To ceil this of all 4 figures above
+		document.getElementById("waitEstimateAlgo").innerHTML = xmlDoc.getElementsByTagName("currentHeadChefWaitingTime")[0].childNodes[0].nodeValue  + " min";
+                })
+         .success(function() {
+         })
+         .fail(function() {
+                alert("error");
+        });
+}
+
+//New takeaway order
+$(document).ready(function(){
+   $('.newTakeawayOrder').click(function(){
+	takeoutOrInhouse = 'TAKEOUT';
+        var htmlUpdate = '<td colspan=2 style="height:12%"><table class="newTakeawayOrderInput" border=1 style="height:100%" ><tr>'+
+       '<td bgcolor=#F08080 id="returnToHome">&nbsp;&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;</td>'+
+       '<td>'+
+       'Algo Est: <a style="font-weight:bold;color:blue" id="deliveryEstimateAlgo"></a><br/>'+
+       'Head: <a style="font-weight:bold;color:blue" id="deliveryEstimateHeadChef"></a><br/>'+
+       'Tand: <a style="font-weight:bold;color:blue" id="deliveryEstimateTandooriChef"></a><br/>'+
+       'Side: <a style="font-weight:bold;color:blue" id="deliveryEstimateSideChef"></a><br/>'+
+       'Prec: <a style="font-weight:bold;color:blue" id="deliveryEstimatePrecooked"></a>' +
+       '</td> '+
+	//Following turned off in production
+       //'<td>'+
+       //'Algo Waiting: <a style="font-weight:bold;color:blue" id="waitEstimateAlgo"></a><br/>'+
+       //'Head Chef: <a style="font-weight:bold;color:blue" id="waitEstimateHeadChef"></a><br/>'+
+       //'Tandoori Chef: <a style="font-weight:bold;color:blue" id="waitEstimateTandooriChef"></a><br/>'+
+       //'Side Chef: <a style="font-weight:bold;color:blue" id="waitEstimateSideChef"></a><br/>'+
+       //'Precooked: <a style="font-weight:bold;color:blue" id="waitEstimatePrecooked"></a>' +
+       '</td> '+
+       //'<td bgcolor=#F08080 id="clearOrder">&nbsp;&nbsp;Clear Order&nbsp;&nbsp;</td>'+
+       '<td>TIME:<a id="currentTime"></a>'+
+       '<br>ETA: <a id="takeAwaIyCollectionTime"></a><br>'+
+       'Manual Est: <a style="font-weight:bold;color:red" id="deliveryEstimate"></a>'+
+	'</td>'+
+       '<td bgcolor=#F08080 id="decreaseDelTimeMin" align="center">-5 min</td> '+
+       '<td bgcolor=#F08080 id="increaseDelTimeMin" align="center">+5 min</td> '+
+       '<td align=center>Customer Name:<br/><input onkeypress="handleCustomer(event)" id=takeoutCustomer size=15 value=""/> </td>'+	   
+       '<td bgcolor=#F08080 id="standingCustomer" align="center">Standing Order</td> '+
+       '<td bgcolor=#F08080 id="printTakeoutOrderToBarAndKitchen" align="center" >&nbsp;&nbsp;Print Order At Bar <br/>and Kitchen&nbsp;&nbsp;</td>'+
+        '</tr><table></td>';
+       $('.singleOrderFooter').html(htmlUpdate);     
+       refreshDeliveryTimes();
+	   refreshOrderList();
+       $('.allOrdersContent').slideToggle(0);
+       $('.singleOrderFooter').slideToggle(0);
+       $('.singleOrderContent').slideToggle(0);
+	launchFullscreen(document.documentElement);
+   });   
+});
+
+//New inhouse order
+$(document).ready(function(){
+   $('.newInhouseOrder').click(function(){
+	takeoutOrInhouse ='INHOUSE';
+   	//alert("Stay tuned; to be implemented");
+        var htmlUpdate = '<td colspan=2 style="height:12%"><table class="newTakeawayOrderInput" border=1 style="height:100%" ><tr>'+
+       '<td bgcolor=#F08080 id="returnToHome">&nbsp;&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;</td>'+
+       //'<td bgcolor=#F08080 id="clearOrder">&nbsp;&nbsp;Clear Order&nbsp;&nbsp;</td>'+
+       '<td bgcolor=#F08080 id="loadOrder">&nbsp;&nbsp;Load Orders&nbsp;&nbsp;</td>'+
+       '<td align=center>Table Number:<br/>' +
+       //'<input onkeypress="handleTableNo(event)" id=tableNumber size=2 value=""/> </td>'+	   
+       '<select id=tableNumber>' +
+	 '<option value=""></option>' +
+	 '<option value="1">1</option>' +
+	 '<option value="2">2</option>' +
+	 '<option value="3">3</option>' +
+	 '<option value="4">4</option>' +
+	 '<option value="5">5</option>' +
+	 '<option value="6">6</option>' +
+	 '<option value="7">7</option>' +
+	 '<option value="8">8</option>' +
+	 '<option value="9">9</option>' +
+	 '<option value="10">10</option>' +
+	 '<option value="11">11</option>' +
+	 '<option value="12">12</option>' +
+	 '<option value="13">13</option>' +
+	 '<option value="14">14</option>' +
+       '</select></td>'+	   
+       '<td align=center>Number of customers:<br/>'+
+       //'<input onkeypress="handleCustNo(event)" id=numbOfCust size=2 value=""/> </td>'+	   
+       '<select id=numbOfCust onchange="refreshOrderList()">' +
+	 '<option value=""></option>' +
+	 '<option value="1">1</option>' +
+	 '<option value="2">2</option>' +
+	 '<option value="3">3</option>' +
+	 '<option value="4">4</option>' +
+	 '<option value="5">5</option>' +
+	 '<option value="6">6</option>' +
+	 '<option value="7">7</option>' +
+	 '<option value="8">8</option>' +
+	 '<option value="9">9</option>' +
+	 '<option value="10">10</option>' +
+	 '<option value="11">11</option>' +
+	 '<option value="12">12</option>' +
+	 '<option value="13">13</option>' +
+	 '<option value="14">14</option>' +
+	 '<option value="15">15</option>' +
+	 '<option value="16">16</option>' +
+	 '<option value="17">17</option>' +
+	 '<option value="18">18</option>' +
+	 '<option value="19">19</option>' +
+	 '<option value="20">20</option>' +
+       '</select></td>'+	   
+       '<td bgcolor=#F08080 id="saveOrder">&nbsp;&nbsp;Save Order&nbsp;&nbsp;</td>'+
+       '<td bgcolor=#F08080 id="printInhouseOrderToKitchen">&nbsp;&nbsp;Send Order To Kitchen&nbsp;&nbsp;</td>'+
+       '<td bgcolor=#F08080 id="printInhouseOrderToBar">&nbsp;&nbsp;Print Receipt At Bar&nbsp;&nbsp;</td>'+
+        '</tr><table></td>';
+       $('.singleOrderFooter').html(htmlUpdate);     
+       //refreshDeliveryTimes();
+	   refreshOrderList();
+       $('.allOrdersContent').slideToggle(0);
+       $('.singleOrderFooter').slideToggle(0);
+       $('.singleOrderContent').slideToggle(0);
+	launchFullscreen(document.documentElement);
+   });
+});
+
+function clearOrder(){
+       var result = confirm('Clear current order selections?');
+       if(result==true){
+                order = [];
+                refreshOrderList();
+		if(takeoutOrInhouse == 'INHOUSE'){
+			document.getElementById('numbOfCust').value = '';
+			document.getElementById('tableNumber').value = '';
+			
+		}
+       }
+       return result;
+}
+
+
+function loadOrders(){
+		//Check for temp orders and populate the foodItems view
+		var checkKey = "tempINHOUSEOrder_T"; 
+		var savedOrdersHTML = '<tr>';
+                //Loop over current localStorage and check if the key partially matches any saved orders
+		var countOfSavedOrders = 0;
+		var keysForSorting = [];
+                for (var key in localStorage){
+                         var res = key.indexOf(checkKey);
+			 //If there is a match; add it as an option
+                         if(res > -1) {
+				//Check it's not the misc option, if so then skip it
+				res = key.indexOf("_miscItems");
+				if (res > -1){
+					continue;
+				}
+				//Else it's the non-Misc key; so use this
+				var pos1 = key.indexOf("_T")+2;
+				var pos2 = key.indexOf("_P");
+				var table = key.substring(pos1,pos2);
+				var keyWithTable = {};
+				keyWithTable.table = table;
+				keyWithTable.key = key;
+				keysForSorting.push(keyWithTable);
+			 }
+		}
+		keysForSorting.sort(function(a,b){return a['table']-b['table']});
+
+		//Order by number by extracting the table number above
+		for (var index in keysForSorting){
+				var key = keysForSorting[index]['key'];
+
+				var pos1 = key.indexOf("_T")+2;
+				var pos2 = key.indexOf("_P");
+				var table = key.substring(pos1,pos2);
+
+				//Extract the number of people and update the Number of Customers text box
+				pos1 = key.indexOf("_P")+2;
+				pos2 = key.indexOf("_TS_");
+				var numbOfCustomer = key.substring(pos1,pos2);
+
+				var kitchenPrintKey = "tempSentForKitchenPrint_T" + table + "_P" + numbOfCustomer;
+
+				pos1 = key.indexOf("_TS_")+4;
+				pos2 = pos1 + 13;
+				var time = key.substring(pos1,pos2);
+				if ((countOfSavedOrders%5) == 0 && (countOfSavedOrders>0)) {
+					savedOrdersHTML+= '</tr><tr>';
+				}
+				savedOrdersHTML += '<td bgcolor=#F08080 orderKey=' + key + 
+						   ' align=center class=displaySavedOrder>' +
+						   'Table: '+ table +
+						   ' <br> Customers: ' + numbOfCustomer + 
+						   '<br/> Time: ' + time + '<br/><br/>' +
+						   '<table bgcolor=#F09090 border=1 bordercolor="black">' +
+						   '<tr><td orderKey=' + key + 
+						   ' kitchenPrintKey=' + kitchenPrintKey + 
+						   ' align=center class=deleteSavedOrder>Delete</td></tr>' +
+						   '</table><br/>' +
+						   '</td>';
+				countOfSavedOrders++;
+                }
+
+		if(countOfSavedOrders == 0){
+			savedOrdersHTML += '<td align=center>No saved orders</td>';
+		}
+
+		savedOrdersHTML += '</tr>'
+		$('.foodItems').html(savedOrdersHTML);
+}
+
+var printToBar = false;
+var printToKitchen = false;
+
+//TODO: This could be factorised below with appropriate on click syntax
+$(document).ready(function(){
+
+    $(".singleOrderFooter").on('click',"tr td",function(){
+    var selectedCellId = $(this).attr('id');
+	
+	if (selectedCellId == "returnToHome"){
+		exitFullscreen();
+		//location.reload();
+		window.location.href = "./index.php";
+        }
+		
+	if (selectedCellId == "clearOrder"){
+		clearOrder();
+		return;
+	} 
+		
+	if (selectedCellId == "increaseDelTimeMin"){
+          	increaseDelTimeMin();
+		$(this).effect("highlight",{color: '#FF4500'}, 1000);
+        }
+	if (selectedCellId == "decreaseDelTimeMin"){
+        	decreaseDelTimeMin();
+		$(this).effect("highlight",{color: '#FF4500'}, 1000);
+        }
+	if (selectedCellId == "standingCustomer"){
+        	toggleStandingCustomer();
+        }				
+	if (selectedCellId == "printTakeoutOrderToBarAndKitchen"){
+		printToBar = true;
+		printToKitchen = true;
+		postData();
+        }
+	if (selectedCellId == "printInhouseOrderToBar"){
+		printToBar = true;
+		postData();
+        }
+	if (selectedCellId == "loadOrder"){
+	        $(this).effect("highlight",{color: '#FF4500'}, 1000);
+		loadOrders();
+		return;
+        }
+	if (selectedCellId == "saveOrder"){
+		saveOrder();
+	 	//Display the saved order
+	 	loadOrders();
+	        $(this).effect("highlight",{color: '#FF4500'}, 1000);
+        }
+	if (selectedCellId == "printInhouseOrderToKitchen"){
+		//Check if it has already been printed; if so; warn it might already have been printed
+		checkIfAlreadyPrinted();
+		//If ok, Send the order to the kitchen
+		printToKitchen = true;
+		postData();
+		markAsSentToKitchen();
+		//Save the order once it has been sent for printing
+		saveOrder();
+		//Reload the page
+	        $(this).effect("highlight",{color: '#FF4500'}, 1000);
+        }
+    });
+});
+
+function checkIfAlreadyPrinted(){
+	isValidInhouseTableAndPersons();
+
+	var tableNumber = document.getElementById('tableNumber').value;
+	var numberOfCustOnTable= document.getElementById('numbOfCust').value; 
+	var checkKey = "tempSentForKitchenPrint_T" + tableNumber + "_P" + numberOfCustOnTable;
+	var foundKey = null;
+
+	//Check if it already exists based on table number and people
+	//Loop over current localStorage and check if the key partially matches another, no matching on the time
+	for (var key in localStorage){
+		var res = key.indexOf(checkKey);
+		//If it's not an order on the device, check the next key
+		if( res < 0) {
+			continue;
+		} else {
+			foundKey = key;
+			break;
+		}
+	}
+
+	if(foundKey!=null){
+			var result = confirm('Order for Table ' + tableNumber + 
+					' for ' + numberOfCustOnTable +
+  					' customer(s) might have already been printed in the kitchen. ' +
+					' Amendments to orders must mentioned in the kitchen. Continue to ' +
+					' send entire order to kitchen?'); 
+			if(!result){
+				//Halt printing of the order to the kitchen
+				throw new Error("User cancelled print to kitchen");
+			}
+	}
+}
+
+function markAsSentToKitchen(){
+	var tableNumber = document.getElementById('tableNumber').value;
+	var numberOfCustOnTable= document.getElementById('numbOfCust').value; 
+	var key = "tempSentForKitchenPrint_T" + tableNumber + "_P" + numberOfCustOnTable;
+	var timestamp = new Date().YYYYMMDD_HHMM();
+        localStorage.setItem(key,"Sent to printer at " + timestamp);
+}
+
+function saveOrder(){
+	   //Take note of the time
+	   var timestamp = new Date().YYYYMMDD_HHMM();
+
+	  //Check order is validated; taken from "printOrder" logic
+	  //Assumption it's an inhouse order
+          var tableNumber = '';
+          var numberOfCustOnTable= '';
+	
+	  isValidInhouseTableAndPersons();
+
+          if(orderAsObjects.length<1){
+                alert("Order is empty");
+		throw new Error("Order was empty!");
+          }
+
+	 tableNumber = document.getElementById('tableNumber').value;
+	 numberOfCustOnTable= document.getElementById('numbOfCust').value; 
+
+           //If locally: just save to the local storage; ideally this would be on the server but this will do for the time being
+		//refactor the order object with key value pairs to work better as with stringify and remove those nulls
+		var checkKey = "tempINHOUSEOrder_T" + tableNumber;
+		var foundKey = null;
+		//Check if it already exists based on table number and people
+			//Loop over current localStorage and check if the key partially matches another, no matching on the time
+			for (var key in localStorage){
+        			var res = key.indexOf(checkKey);
+        			//If it's not an order on the device, check the next key
+        			if( res < 0) {
+                			continue;
+        			} else {
+					//Check if it isn't the miscItem key (really should have added it as an object perhaps (of the same key)?)
+					res = key.indexOf("_miscItems");
+					if (res < 0){
+						foundKey = key;
+						break;
+					}
+				}
+			}
+
+		var key = checkKey + "_P" + numberOfCustOnTable + "_TS_" + timestamp;
+
+	 orderAsObjects.sort(function(a,b){return a['foodID']-b['foodID']});
+
+	 //Remove the old entry
+         localStorage.removeItem(foundKey);
+	 //Remove the old misc entry too
+	 localStorage.removeItem(foundKey+"_miscItems");
+
+	 //Insert new order to save
+	 //Note this add a "null" at the end of the array saved for some stupid reason; so this filter is applied to get rid of them. Could be because I'm using orderAsObjects as an array not object? http://stackoverflow.com/questions/26253797/json-stringify-returns-null
+         localStorage.setItem(key,JSON.stringify(orderAsObjects.filter(function(e){return e})));
+         //localStorage.setItem(key,JSON.stringify(orderAsObjects));
+
+	 var miscItemsToSave = [];
+	 //Save any Misc Items: NB this needs to be loaded afterwards
+		//Loop through the misc items
+	        $.each(food, function(idx, obj) {
+                        //NB: The cateogory could be split by comma, but for a misc item it shouldn't 
+                        var category = obj.foodCategoryID;
+			//Check if the item is a misc item
+			var res = category.indexOf('24');
+			if (res > 0){
+				//Save these	
+				//Otherwise a genuine new misc entry
+				if (!(obj.foodID == 219 || obj.foodID == 220)){
+					miscItemsToSave.push(obj);
+				}
+			}
+        	});
+
+		//Save the Description, foodId, Price selected
+		localStorage.setItem(key+"_miscItems",JSON.stringify(miscItemsToSave));
+
+	 //Display the saved order
+	 //loadOrders();
+
+	   //If saving serverside: post data to the server via php. However this will only be saved in the temp area, so better to save locally:
+		//To add an XML tag to state this is an order to be saved
+		//To modularise, perhaps use a different php page
+		//postData();
+}
+
+function handleCustomer(e){
+	if(e.keyCode === 13){
+		//postData();
+		//TODO; fix this
+                $(".takeoutCustomer").blur(); 
+	}
+}
+
+
+var orderNote = '';
+
+function handleOrderNote(e){
+	if(e.keyCode === 13){
+		addOrderNote();
+	}
+}
+
+function addOrderNote(){
+	orderNote = document.getElementById('miscNote').value;
+	refreshOrderList();
+}
+
+function removeOrderNote(){
+	orderNote = '';
+	orderNote = document.getElementById('miscNote').value = '';
+	refreshOrderList();
+}
+
+var miscItemDescription = '';
+var miscItemPrice = '';
+var miscItemCategory = '';
+
+function handleMiscItem(e){
+	if(e.keyCode === 13){
+		addMiscItem();
+	}
+}
+
+var miscItemEntered = false;
+
+function addMiscItem(){
+	miscItemEntered = true;
+	miscItemDescription = document.getElementById('miscItemDescription').value;
+	miscItemPrice = document.getElementById('miscItemPrice').value;
+	miscItemCategory = $("#miscItemCategory").find(':selected').attr('categoryId');
+	//miscItemCategory = document.getElementById('miscItemCategory')[0].getAttribute("categoryId");
+
+	if(miscItemDescription =='' ){
+		alert('Enter a food description');
+		throw new Error("Misc food description not entered");
+	}
+
+	//Fix usage of '&' to be 'and' instead
+	miscItemDescription = miscItemDescription.replace(/&/g, "and");
+	//Remove any special characters
+	miscItemDescription = miscItemDescription.replace(/[^a-zA-Z ()]/g, "")
+
+	if (miscItemPrice ==''){
+		alert('Enter a price');
+		throw new Error("Misc price not entered");
+	}
+
+	if(miscItemCategory == 'default'){
+		alert('Select a food category');
+		throw new Error("Misc category not seletected");
+	}
+
+	refreshOrderList();
+}
+
+Object.defineProperty(Date.prototype, 'YYYYMMDD_HHMM', {
+    value: function() {
+        function pad2(n) {  // always returns a string
+            return (n < 10 ? '0' : '') + n;
+        }
+
+        return this.getFullYear() +
+               pad2(this.getMonth() + 1) + 
+               pad2(this.getDate()) + '_' +
+               pad2(this.getHours()) +
+               pad2(this.getMinutes());
+    }
+});
+
+
+
+function isValidInhouseTableAndPersons(){
+	//Assumption it is a in house order
+	var tableNumber = document.getElementById('tableNumber').value;
+	var numberOfCustOnTable= document.getElementById('numbOfCust').value; 
+
+	//Validations
+	if(tableNumber==""){
+	    alert("Enter table number");
+	    throw new Error("Table number was not entered");
+	}
+
+	if(numberOfCustOnTable==""){
+	    alert("Enter number of customers at the table");
+	    throw new Error("Number of customers was not entered");
+	}
+}
+
+//Post the data to the php page that will then forward to the bar and/or kitchen printer
+function postData()
+{
+
+	//Order the current orders 
+	orderAsObjects.sort(function(a,b){return a['foodID']-b['foodID']});
+
+	var payload = [];
+        var serviceCharge = 0;
+	var chutneysCharge = 0;
+	var totalQty = 0;
+	var totalPrice = 0;
+
+	var customer ='';
+	var orderTime = '';
+	var etaTime = '';
+
+	var tableNumber = '';
+	var numberOfCustOnTable= '';
+	var printTime = '';
+
+	//Get current time
+	printTime = new Date();
+	printTime = formatAMPM(printTime);
+
+        if(takeoutOrInhouse == 'TAKEOUT'){
+            //Print customer, waiting time, ETA
+            customer = document.getElementById('takeoutCustomer').value;
+            customer = customer.replace(/[^a-zA-Z0-9]/g,'');
+            orderTime = document.getElementById('currentTime').innerHTML;
+	    etaTime =  document.getElementById('takeAwaIyCollectionTime').innerHTML;
+
+	    //Validations
+	    if(customer==""){
+		alert("Enter customer name");
+		throw new Error("Customer name not entered");
+    	    }
+
+        } else { //If Inhouse order
+		isValidInhouseTableAndPersons();
+		tableNumber = document.getElementById('tableNumber').value;
+		numberOfCustOnTable= document.getElementById('numbOfCust').value; 
+
+		//Inform the chef the order should be ready within 20 min
+                var inhouseETA = new Date();
+                inhouseETA.setMinutes(inhouseETA.getMinutes() + 20);
+		etaTime= formatAMPM(inhouseETA);
+        }
+	
+	if(orderAsObjects.length<1){
+		alert("Order is empty");
+		throw new Error("Empty Order!");
+	}
+
+
+	//User ordering validation checks
+	//If it's a takeaway or inhouse
+	if(printToKitchen){
+		//Confirm if customer informed
+		var result = confirm('Have you:' +
+				     '\n1. Repeated and confirmed order items and quantities with customer?' +
+				     '\n2. Checked any starter & main order ambgiuities? E.g. Chicken Tikka Starter or Chicken Tikka Main?');
+		if(result!=true){
+			throw new Error("Order not confirmed with customer");
+		}
+	}
+	//If it's an in house order and printing to the bar;
+	if(printToBar && (takeoutOrInhouse == 'INHOUSE')){
+		//Confirm if customer informed
+		var result = confirm('Have you ensured:' +
+				     '\n1. All popadoms have been accounted for?' +
+				     '\n2. All drinks have been accounted for?');
+		if(result!=true){
+			throw new Error("Drinks and/or popadoms have not all been accounted for");
+		}
+	}
+
+	payload.push("<order>");
+
+        if(takeoutOrInhouse=='TAKEOUT'){
+		payload.push("<takeoutOrInhouse>TAKEOUT</takeoutOrInhouse>");
+        } else {//Assume INHOUSE otherwise
+		payload.push("<takeoutOrInhouse>INHOUSE</takeoutOrInhouse>");
+        }
+
+	//Flag which printers this should be printed on; but will this impact reprints? Shouldn't do
+        if(takeoutOrInhouse=='TAKEOUT'){
+		//We assume printToBar = true and  printToKitchen = true
+		//If TAKEOUT then print at both the bar printer for a receipt and to the kitchen printer to be cooked
+		payload.push("<printTerminal>KITCHEN</printTerminal>");
+		payload.push("<printTerminal>BAR</printTerminal>");
+        } else {
+		//If an inhouse order and only printing the receipt;
+		if(printToBar){
+			payload.push("<printTerminal>BAR</printTerminal>");
+		}
+		if(printToKitchen){
+			payload.push("<printTerminal>KITCHEN</printTerminal>");
+		}
+        }
+
+	//Will only be available if a takeaway order	
+	if (isStandingCustomer){
+		payload.push("<standingOrder/>");
+	}
+
+	if (orderNote!=''){
+		payload.push("<orderNote>" + orderNote +"</orderNote>");
+	}
+
+	if(takeoutOrInhouse == 'TAKEOUT'){
+    		payload.push("<customer>" + customer + "</customer>");
+	        payload.push("<orderTime>" +  orderTime + "</orderTime>");
+		payload.push("<collectionTime>" + etaTime + "</collectionTime>");
+	} else {
+    		payload.push("<tableNumber>" + tableNumber  + "</tableNumber>");
+    		payload.push("<numbOfCust>" + numberOfCustOnTable + "</numbOfCust>");
+    		payload.push("<printTime>" + printTime + "</printTime>");
+		payload.push("<inhouseReadyTime>" + etaTime + "</inhouseReadyTime>");
+	}
+
+	//Timestamp of the order
+	var timestamp =  new Date().getTime();
+	payload.push("<timestamp>" + timestamp + "</timestamp>");
+
+	var startersXML = '';
+	var mainXML = '';
+	var childrenXML = '';
+	var sidesXML = '';
+	var riceSundriesXML = '';
+	var popadomsXML = '';
+	var miscItemXML = '';
+    	var dessertsXML = '';
+    	var drinksXML = '';
+	
+    for(var index in orderAsObjects) {
+	var foodDesc = '';
+	var outDesc = '';
+        var foodPrice = 0 ;
+	var foodCategoryID = 0;
+
+		$.each(food, function(key,value){
+			//if (value.foodID==orderWithKeys[index]['foodID']){
+			if (value.foodID==orderAsObjects[index]['foodID']){
+				foodDesc = value.foodDescription;
+				outDesc = value.outDescrip;
+
+                                if(takeoutOrInhouse == 'TAKEOUT'){
+                                      foodPrice = value.outPrice;
+                                } else {
+                                      //Assumption here it's an in price
+                                      foodPrice = value.inPrice
+                                }
+
+				//Only take the first token of the food category as there might be multiple e.g. Popular items
+				foodCategoryID = value.foodCategoryID.split(',')[0];				
+				return;
+			}
+		});
+		
+		var subtotal = (orderAsObjects[index]['qty']*foodPrice).toFixed(2);
+		var qty = orderAsObjects[index]['qty'];
+
+		//Categories
+		//alert(foodCategoryID);
+		var foodCategoryName = '';
+			if (foodCategoryID==3){
+				foodCategoryName = 'Starters';
+				startersXML += addOrderAsXML(foodCategoryName,qty,foodDesc,outDesc,subtotal);
+			}
+
+			if (foodCategoryID>=4 && foodCategoryID<19){
+				foodCategoryName = 'Mains';
+				mainXML += addOrderAsXML(foodCategoryName,qty,foodDesc,outDesc,subtotal);
+			}
+//todo here make categoaru 18.5 as a hack to order this properly:w
+
+			if (foodCategoryID==29){
+				foodCategoryName = 'Children Mains';
+				childrenXML += addOrderAsXML(foodCategoryName,qty,foodDesc,outDesc,subtotal);
+			}
+
+			if (foodCategoryID==19 || foodCategoryID==19.1){
+				foodCategoryName = 'Side Dishes';
+				sidesXML += addOrderAsXML(foodCategoryName,qty,foodDesc,outDesc,subtotal);
+			}
+			
+			if (foodCategoryID==20 || foodCategoryID==21){
+				foodCategoryName = 'Rice and Breads';
+				riceSundriesXML += addOrderAsXML(foodCategoryName,qty,foodDesc,outDesc,subtotal);
+			}
+			
+			if (foodCategoryID==30){
+				foodCategoryName = 'Desserts';
+				dessertsXML += addOrderAsXML(foodCategoryName,qty,foodDesc,outDesc,subtotal);
+			}
+
+			if (foodCategoryID==23){
+				foodCategoryName = 'Drinks';
+				drinksXML += addOrderAsXML(foodCategoryName,qty,foodDesc,outDesc,subtotal);
+			}
+		
+			if (foodCategoryID==24){
+				foodCategoryName = 'Misc Item';
+				miscItemXML += addOrderAsXML(foodCategoryName,qty,foodDesc,outDesc,subtotal);
+			}
+
+			if (foodCategoryID==22 || foodCategoryID==27){
+				foodCategoryName = 'Popadoms';
+				popadomsXML += addOrderAsXML(foodCategoryName,qty,foodDesc,outDesc,subtotal);
+			}
+			
+		totalPrice += qty*foodPrice;
+		totalQty += qty
+	}
+
+
+	payload.push(startersXML + mainXML + childrenXML + sidesXML + riceSundriesXML + popadomsXML + miscItemXML+ dessertsXML + drinksXML);
+	//If inhouse order, Add Chutneys and Service Charge then update the total
+
+	if(takeoutOrInhouse == 'INHOUSE'){
+		//Add chutney charge
+		//If there is at least one popadome served, charge 50p per customer on the table
+		//Check if popadoms were titled 
+		//if(order[211]>0 || order[212]>0){
+		if(getFoodQty(211)>0 || getFoodQty(212)>0){
+               		if(numberOfCustOnTable==""){
+				//In theory shouldn't reach here as numb of customers should have been entered
+                   		alert("Enter number of customers at the table to determine chutney charge");
+               		} else {
+				var local_chutneys = numberOfCustOnTable*0.5;
+				chutneysCharge =  local_chutneys;
+				totalPrice += local_chutneys;
+			}
+		}
+
+		//Add service charge
+		var local_serviceCharge = totalPrice * 0.1;
+		serviceCharge = local_serviceCharge;
+		totalPrice += local_serviceCharge;
+        }
+
+	//Todo; these two should only be if it's an inhouse order
+	payload.push("<chutneysCharge>" + chutneysCharge.toFixed(2) +"</chutneysCharge>");
+	payload.push("<serviceCharge>" + serviceCharge.toFixed(2) +"</serviceCharge>");
+
+	payload.push("<totalQty>" + totalQty.toFixed(1) +"</totalQty>"); //Doesn't include chutneys
+	payload.push("<total>" + totalPrice.toFixed(2) +"</total>");
+
+
+	//Add ETA times
+	payload.push("<algoEstimate>" + algoEstimate + "</algoEstimate>");
+	payload.push("<headChefEstimate>" + headChefEstimate + "</headChefEstimate>"); 
+	payload.push("<tandooriChefEstimate>" + tandooriChefEstimate + "</tandooriChefEstimate>");
+	payload.push("<sideChefEstimate>" + sideChefEstimate + "</sideChefEstimate>");
+	payload.push("<preCookedItemsEstimate>" + preCookedItemsEstimate + "</preCookedItemsEstimate>");
+
+	payload.push("</order>");
+
+        //Save locally
+	var key = '';
+        key += takeoutOrInhouse;
+
+        if(takeoutOrInhouse == 'TAKEOUT'){
+                key += "_" + customer
+        } else {
+                key += "_T" + tableNumber
+                key += "_P" + numberOfCustOnTable
+        } 
+
+	key += "_";  
+        key += new Date().YYYYMMDD_HHMM();
+	//Need a counter here or use timestamp otherwise the order in the local storage will be overwritten
+
+	var localStorageOrderCount = localStorage.getItem("localStorageOrderCount");
+	if (localStorageOrderCount == null){
+		localStorageOrderCount = 1;
+	} else {
+		localStorageOrderCount++;
+	}
+	key = "orderOnDevice_" + localStorageOrderCount + "_"  + key;
+        localStorage.setItem(key,payload);
+	
+	localStorage.setItem("localStorageOrderCount",localStorageOrderCount);
+        var jqxhr = $.post( "printOrder.php", {'order': payload}, function() {
+		//alert("Order sent for printing");
+		takeoutOrInhouse = '';//Double check this flag has been reset
+		exitFullscreen();
+                //location.reload(); 
+		window.location.href = "./index.php";
+		})
+	 .fail(function() {
+		alert("error");
+	});
+}
+
+function addOrderAsXML(foodCategoryName,qty,foodDesc,outDesc,subtotal){
+
+	return "<item><category>" + foodCategoryName + "</category><qty>" + qty + "</qty><foodDesc>" + foodDesc + "</foodDesc><outDescrip>" + outDesc + "</outDescrip><subtotal>" + subtotal +"</subtotal></item>";
+
+}
+
+//Hide single order view on loading page
+$(document).ready(function(){
+        $('.singleOrderContent').hide();
+		$('.singleOrderFooter').hide();
+});
+
+
+</script>
+
+<script>
+// Find the right method, call on correct element
+function launchFullscreen(element) {
+  if(element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if(element.mozRequestFullScreen) {
+    element.mozRequestFullScreen();
+  } else if(element.webkitRequestFullscreen) {
+    element.webkitRequestFullscreen();
+  } else if(element.msRequestFullscreen) {
+    element.msRequestFullscreen();
+  }
+}
+
+function exitFullscreen() {
+  if(document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if(document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if(document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  }
+}
+
+</script>
+
+</head>
+
+ <body>
+  <table class="mainTable" border=1 width="100%" style="height:100%">
+     <tr class="allOrdersContent">
+        <td valign=top>
+            <table border=1 width=100% height=100% bgcolor=#20B2AA>
+               <tr><td style="height:50%; font-size:300%;" class="newTakeawayOrder" align=center bgcolor=#F08080>TAKEOUT ORDER</td></tr>
+               <tr><td style="height:50%; font-size:300%;" class="newInhouseOrder" align=center bgcolor=#F08080>INHOUSE ORDERS</td></tr>
+            </table>
+        </td>
+     </tr>
+     <!--Order Total-->
+     <tr class="singleOrderContent">
+       <td valign=top> 
+         <table border=1 width="100%" style="height:100%">
+             <tr>
+                 <td valign=top>
+                 <table class="foodCategory" border=1 width="100%" cellpadding="0" bgcolor=#20B2AA>
+                 <tr><td>Should auto-populate</td></tr>
+                 </table>
+                 </td>
+              </tr>
+             <tr>
+               <td valign=top style="height:100%">
+               <table class="foodItems" border=1 width="100%" cellpadding="0" style="height:100%" bgcolor=#20B2AA>
+                 <tr>
+                 <td id="foodItemsTD" align=center >Select a menu section</td>
+                 </tr>
+               </table>
+              </td>
+            </tr>
+         </table>
+      </td>
+     <td width="28%" valign=top>
+         <table width=100% style="height:100%" bgcolor=#20B2AA >
+         <tr>
+            <td valign=top>
+            <table class="order" border=1 width=100%>
+               <!--<tr><th>Food Item</th><th>Qty</th><th>Price</th></tr>-->
+			   <tr><th>Order items will appear here</th></tr>
+            </table>
+            </td>
+         </tr>
+         </table>
+       </td>
+	 </tr>
+    <tr class="singleOrderFooter" width=100% style="height:10px" bgcolor=#20B2AA align=center>
+       <td colspan=2><b>Select a new order</b></td>
+     </tr>
+  </table>
+ </body>
+</html>
