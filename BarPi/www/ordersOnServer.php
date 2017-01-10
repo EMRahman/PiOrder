@@ -12,10 +12,6 @@
 <div id="result"></div>
 <script>
 
-//TODO
-//Add a back button?
-//Only print chutney and service if inhouse order
-
 var processedOrders_JavaScript = null;
 
 $(document).ready(function(){
