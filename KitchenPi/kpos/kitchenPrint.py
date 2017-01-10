@@ -1,14 +1,3 @@
-# BasicPrint.py
-# Copyright (c) 2014 Able Systems Limited. All rights reserved.
-'''This simple code example is provided as-is, and is for demonstration
-purposes only. Able Systems takes no responsibility for any system
-implementations based on this code.
-
-This very simple python script establishes USB communication with the Pipsta
-printer sends a simple text string to the printer.
-
-Copyright (c) 2014 Able Systems Limited. All rights reserved.
-'''
 import argparse
 import platform
 import sys
