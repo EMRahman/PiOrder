@@ -57,7 +57,7 @@ A: Estimated breakdown below:
 
 | Item            | Cost           | 
 | --------------- | --------------:|
-|2 Pipista Printers|           £160|	
+|2 Pipsta Printers|           £160|	
 |1 Large Tablet   |            £150|
 |2 Small Tablets  |            £100|
 |1 Printer Cam    |             £20|
