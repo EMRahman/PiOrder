@@ -59,7 +59,7 @@ foreach($orderXML->printTerminal as $printer){
 	fwrite($log_fp, "\n".'Output file created: '.$outputFile);
 }
 
-#Deamon service kpos will print and move the file
+#Daemon service kpos will print and move the file
 
 #Close the log file
 
