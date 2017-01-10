@@ -1,5 +1,4 @@
 #!/bin/bash
-#Todo: add faild processing for customer receipt
 
 kpos="/tmp/kpos"
 printAtBarDir="/tmp/kpos/printAtBar"
