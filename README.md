@@ -35,7 +35,7 @@ NB: Not accessible outside the UK
 3. Online ordering for customers.
 4. View the bar or kitchen using RP cameras.
 
-##Technical Overview
+## Technical Overview
    * A Raspberry Pi webserver is used to implement the POS (JavaScript/JQuery/PHP).
    * The Pipsta printers are used to print the customer receipts or kitchen tickets (Python, Bash Scripts, SCP).
    * Orders arriving from a website are sent to the bar and kitchen for printing (SCP).
