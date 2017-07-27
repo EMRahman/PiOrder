@@ -3,6 +3,8 @@ Raspberry Pi & Pipsta based solution for [Point of Sale](https://en.wikipedia.or
 
 Featured on The MagPi, [May 2017, Issue 57, Page 40.](https://www.raspberrypi.org/magpi-issues/MagPi57.pdf) 
 
+Production deployment of online ordering feature: https://khybertandoori.com/order
+
 ## Video 
 [![IMAGE ALT TEXT HERE](https://github.com/EMRahman/PiOrder/blob/master/Images/youtube.jpeg)](https://www.youtube.com/watch?v=bYomIR-4Y0o)
 
