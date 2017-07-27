@@ -1,7 +1,7 @@
 # PiOrder
 Raspberry Pi & Pipsta based solution for [Point of Sale](https://en.wikipedia.org/wiki/Point_of_sale#Hospitality_industry), [Remote Kitchen Printing](https://www.ecrs.com/products/point-of-sale-pos/remote-kitchen-printing/) &amp; [Online Ordering](https://en.wikipedia.org/wiki/Online_food_ordering) aimed at restaurants, bars and takeways.
 
-Featured on The MagPi, May 2017, Issue 57, page 40: (https://www.raspberrypi.org/magpi-issues/MagPi57.pdf) 
+Featured on The MagPi, [May 2017, Issue 57, Page 40] (https://www.raspberrypi.org/magpi-issues/MagPi57.pdf) 
 
 ## Video 
 [![IMAGE ALT TEXT HERE](https://github.com/EMRahman/PiOrder/blob/master/Images/youtube.jpeg)](https://www.youtube.com/watch?v=bYomIR-4Y0o)
