@@ -43,7 +43,7 @@ NB: Not accessible outside the UK
    * A Raspberry Pi webserver is used to implement the POS (JavaScript/JQuery/PHP).
    * The Pipsta printers are used to print the customer receipts or kitchen tickets (Python, Bash Scripts, SCP).
    * Orders arriving from a website are sent to the bar and kitchen for printing (SCP).
-   * PiOrder is agnostic to the website creation. We've used Symfony2 & PHP. Bash, Awk and Cron used for handling of the orders and current waiting times. [Stripe](http://stripe.com/) used for taking online payments.
+   * PiOrder is agnostic to the website creation. We've used [Symfony2](https://symfony.com) & PHP. Bash, Awk and Cron used for handling of the orders and current waiting times. [Stripe](http://stripe.com/) used for taking online payments.
    * No central database is used - using files is sufficient.
 
 ## Hardware
