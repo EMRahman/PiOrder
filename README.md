@@ -5,7 +5,7 @@ Featured on The MagPi, [May 2017, Issue 57, Page 40.](https://www.raspberrypi.or
 
 Live example of the online ordering feature: https://khybertandoori.com
 
-Donations accepted through our [CryptoTill](http://khybertandoori.com/cryptotill/CryptoTill.html) :)
+Donations welcome through our [CryptoTill](http://khybertandoori.com/cryptotill/CryptoTill.html)!
 
 ## Video 
 [![IMAGE ALT TEXT HERE](https://github.com/EMRahman/PiOrder/blob/master/Images/youtube.jpeg)](https://www.youtube.com/watch?v=bYomIR-4Y0o)
