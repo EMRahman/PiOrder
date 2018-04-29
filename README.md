@@ -1,7 +1,7 @@
 # PiOrder
 Raspberry Pi & Pipsta based solution for [Point of Sale](https://en.wikipedia.org/wiki/Point_of_sale#Hospitality_industry), [Remote Kitchen Printing](https://www.ecrs.com/products/point-of-sale-pos/remote-kitchen-printing/) &amp; [Online Ordering](https://en.wikipedia.org/wiki/Online_food_ordering) aimed at restaurants, bars and takeways.
 
-Stats (Apr-2018):
+Stats (Apr 2018):
 - 9,943 in-house & online orders printed (since Apr 2016)
 - 450 online orders submitted (since Dec 2016)
 - 140 paid using credit/debit card online (via [Stripe](http://stripe.com/))
