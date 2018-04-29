@@ -1,6 +1,11 @@
 # PiOrder
 Raspberry Pi & Pipsta based solution for [Point of Sale](https://en.wikipedia.org/wiki/Point_of_sale#Hospitality_industry), [Remote Kitchen Printing](https://www.ecrs.com/products/point-of-sale-pos/remote-kitchen-printing/) &amp; [Online Ordering](https://en.wikipedia.org/wiki/Online_food_ordering) aimed at restaurants, bars and takeways.
 
+Stats (29-Apr-2018):
+- 450 online orders
+- 140 paid using credit/debit card online (via [Stripe](http://stripe.com/))
+- 0 [Crypto](http://khybertandoori.com/cryptotill/CryptoTill_CustomerPayment.html) payments (to give perspective, we've just had 1 for a [dine-in customer](https://twitter.com/EhsanRahman/status/967506398081843209))
+
 Featured on The MagPi, [May 2017, Issue 57, Page 40.](https://www.raspberrypi.org/magpi-issues/MagPi57.pdf) 
 
 Live example of the online ordering feature: https://khybertandoori.com
