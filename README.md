@@ -5,7 +5,7 @@ Stats (Apr 2018):
 - ~9,900 in-house & takeout orders printed (since Apr 2016)
 - 450 online takeout orders served (since Dec 2016)
 - 140 paid using credit/debit card online (via [Stripe](http://stripe.com/))
-- 0 [Crypto](http://khybertandoori.com/cryptotill/CryptoTill_CustomerPayment.html) payments (to give perspective, we've just had 1 for a [dine-in customer](https://twitter.com/EhsanRahman/status/967506398081843209))
+- 1 [Crypto](http://khybertandoori.com/cryptotill/CryptoTill_CustomerPayment.html) payments (to give perspective, we've just had 1 for a [dine-in customer](https://twitter.com/EhsanRahman/status/967506398081843209))
 - 0 hardware failures/replacements
 
 Featured on The MagPi, [May 2017, Issue 57, Page 40.](https://www.raspberrypi.org/magpi-issues/MagPi57.pdf) 
