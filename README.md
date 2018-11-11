@@ -4,7 +4,7 @@ Raspberry Pi & Pipsta based solution for [Point of Sale](https://en.wikipedia.or
 Stats (as of Nov 2018):
 - 12,738 in-house & takeout orders printed (since Apr 2016)
 - 700 online takeout orders served (since Dec 2016)
-- 235 paid using credit/debit card online (via [Stripe](http://stripe.com/))
+- 235 payments using credit/debit card online (via [Stripe](http://stripe.com/))
 - 1 [Crypto](http://khybertandoori.com/cryptotill/CryptoTill_CustomerPayment.html) payments (to give perspective, we've just had 1 for a [dine-in customer](https://twitter.com/EhsanRahman/status/967506398081843209))
 - 0 hardware failures/replacements
 
