@@ -1,18 +1,16 @@
 # PiOrder
 Raspberry Pi & Pipsta based solution for [Point of Sale](https://en.wikipedia.org/wiki/Point_of_sale#Hospitality_industry), [Remote Kitchen Printing](https://www.ecrs.com/products/point-of-sale-pos/remote-kitchen-printing/) &amp; [Online Ordering](https://en.wikipedia.org/wiki/Online_food_ordering) aimed at restaurants, bars and takeways.
 
-Stats (as of Nov 2018):
-- 12,738 in-house & takeout orders printed (since Apr 2016)
-- 700 online takeout orders served (since Dec 2016)
-- 235 payments using credit/debit card online (via [Stripe](http://stripe.com/))
-- 1 [Crypto](http://khybertandoori.com/cryptotill/CryptoTill_CustomerPayment.html) payments (to give perspective, we've just had 1 for a [dine-in customer](https://twitter.com/EhsanRahman/status/967506398081843209))
-- 0 hardware failures/replacements
+Stats:
+- 12,738 in-house & takeout orders printed (Apr 2016 - Nov 2018)
+- 1,201 online takeout orders served (Dec 2016 - Nov 2019)
+- 235 payments using credit/debit card online (via [Stripe](http://stripe.com/)) (Dec 2016 - Nov 2018)
+- 1 [Crypto](http://khybertandoori.com/cryptotill/CryptoTill_CustomerPayment.html) payments (to give perspective, we've just had 1 for a [dine-in customer](https://twitter.com/EhsanRahman/status/967506398081843209)) (Dec 2016 - Nov 2018)
+- 0 hardware failures/replacements (Apr 2016 - Nov 2019)
 
 Featured on The MagPi, [May 2017, Issue 57, Page 40.](https://www.raspberrypi.org/magpi-issues/MagPi57.pdf) 
 
 Live example of the online ordering feature: https://khybertandoori.com
-
-Donations welcome through our [CryptoTill](http://khybertandoori.com/cryptotill/CryptoTill_CustomerPayment.html). :o)
 
 ## Video 
 [![IMAGE ALT TEXT HERE](https://github.com/EMRahman/PiOrder/blob/master/Images/youtube.jpeg)](https://www.youtube.com/watch?v=bYomIR-4Y0o)
@@ -34,8 +32,7 @@ Online Ordering via an iPhone:
 
 ## Production
 
-Live near Kingswood, Surrey in the UK and fancy a takeout? [Order online!](https://khybertandoori.com/order/login)
-
+Sadly no longer active; my father is retired and has passed on the business to new, younger, managers.
 NB: Not accessible outside the UK
 
 
