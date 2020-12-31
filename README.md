@@ -10,7 +10,7 @@ Stats:
 
 Featured on The MagPi, [May 2017, Issue 57, Page 40.](https://www.raspberrypi.org/magpi-issues/MagPi57.pdf) 
 
-Live example of the online ordering feature: https://khybertandoori.com
+Live example of the online ordering feature: Sadly no longer active (my father, the manager, retired); but you can still order online :) https://khybertandoori.com
 
 ## Video 
 [![IMAGE ALT TEXT HERE](https://github.com/EMRahman/PiOrder/blob/master/Images/youtube.jpeg)](https://www.youtube.com/watch?v=bYomIR-4Y0o)
